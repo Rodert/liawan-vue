@@ -30,7 +30,7 @@
 
 
 
-预览见：<http://javapub.net.cn/>
+预览见：<http://liawan.javapub.net.cn/>
 
 **账号：**
 
@@ -47,7 +47,7 @@
 
 加载依赖：
 
-npm install
+npm install --registry=https://registry.npm.taobao.org
 
 启动：
 
@@ -60,7 +60,7 @@ npm run dev
 1. jdk8（及以上）
 2. mysql（建议v5.7）
 3. redis
-4. 
+
 
 执行：com/javapub/liawan/admin/LiaWanApplication.java
 

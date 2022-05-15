@@ -27,14 +27,14 @@
             size="mini"
             icon="el-icon-cloudy"
             plain
-            @click="goTarget('https://gitee.com/rodert')"
+            @click="goTarget('https://gitee.com/rodert/liawan-vue')"
             >访问码云</el-button
           >
           <el-button
             size="mini"
             icon="el-icon-s-home"
             plain
-            @click="goTarget('http://javapub.net.cn')"
+            @click="goTarget('http://liawan.javapub.net.cn/')"
             >访问主页</el-button
           >
         </p>
@@ -110,7 +110,7 @@
               width="100%"
             />
             <span style="display: inline-block; height: 30px; line-height: 30px"
-              >如果有问题可以联系这里、围观作者朋友圈</span
+              >如果有问题可以联系这里、无偿协助，围观作者朋友圈</span
             >
           </div>
         </el-card>
