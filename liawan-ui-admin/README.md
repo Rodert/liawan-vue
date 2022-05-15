@@ -7,6 +7,6 @@
 
 作者 王仕宇 公众号 JavaPub
 
-预览见：<http://javapub.net.cn/>
+预览见：<http://liawan.javapub.net.cn/>
 
 

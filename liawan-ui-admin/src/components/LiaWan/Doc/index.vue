@@ -9,7 +9,7 @@ export default {
   name: 'LiaWanDoc',
   data() {
     return {
-      url: 'http://javapub.net.cn/'
+      url: 'http://liawan.javapub.net.cn/'
     }
   },
   methods: {

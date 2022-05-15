@@ -9,7 +9,7 @@ export default {
   name: 'LiaWanGit',
   data() {
     return {
-      url: 'http://javapub.net.cn/'
+      url: 'https://github.com/Rodert/liawan-vue'
     }
   },
   methods: {
