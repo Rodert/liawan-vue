@@ -1,6 +1,6 @@
 # 项目相关配置
 liawan:
-  # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
+  # 文件路径 示例（ Windows配置D:/liawan/uploadPath，Linux配置 /home/liawan/uploadPath）
   profile: D:/liawan/uploadPath
   # 获取ip地址开关
   addressEnabled: false
