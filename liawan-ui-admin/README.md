@@ -10,3 +10,21 @@
 预览见：<http://liawan.javapub.net.cn/>
 
 
+**启动前端：**
+
+1. 依赖环境：
+
+- npm
+- nodejs
+
+2. 加载依赖：
+
+```
+npm install --registry=https://registry.npm.taobao.org
+```
+
+3. 启动：
+
+```
+npm run dev
+```

@@ -12,7 +12,6 @@
 
 愿景：实现一个通用、简单易上手的VUE工程，本工程主要针对不懂前端的后端工程师。致力于提供一个高扩展、方便使用的通用后台工程。
 
-我的网站上线了：<http://javapub.net.cn/>
 
 ## 收录
 
@@ -34,49 +33,66 @@
 
 ## 文档
 
-建设中
 
+
+建设中...
 
 ## 环境搭建
 
 **启动前端：**
 
-依赖：
+1. 依赖环境：
 
-1. npm
+- npm
+- nodejs
 
-加载依赖：
+2. 加载依赖：
 
+```
 npm install --registry=https://registry.npm.taobao.org
+```
 
-启动：
+3. 启动：
 
+```
 npm run dev
+```
 
 **启动后端：**
 
-依赖：
+1. 依赖环境：
 
-1. jdk8（及以上）
-2. mysql（建议v5.7）
-3. redis
+- jdk8（及以上）
+- mysql（建议v5.7）
+- redis
 
+2. 启动
 
-执行：com/javapub/liawan/admin/LiaWanApplication.java
+执行：main
+
+```
+com/javapub/liawan/admin/LiaWanApplication.java
+```
 
 ## 测试账号
 
 系统管理员：
 
-amdin admin123 
+username：amdin 
+
+password：admin123 
 
 普通账号：
 
-liawan admin123
+username：liawan 
+
+password：admin123
 
 监控账号：
 
-liawan 123456
+username：liawan 
+
+password：123456
 
 ## 系统展示
 
@@ -127,21 +143,19 @@ mvn clean package -DskipTests
 
 部署目录 liawan-admin 下 liawan-admin.jar 
 
-## 开发计划
+## 开发计划 DOTO list
+
+- [ ] 持续更新文档，提供一套详尽可供参考的文档，助力金九银十
+
+---
 
 - [ ] Activiti + Flowable 工作流
 - [ ] 第三方登录
 - [ ] 支付
 - [ ] 短信
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
 - [ ] 支持 RBAC 动态权限、数据权限
-- [ ] 商城
-
+- [ ] 接入商城
+- [ ] 
 
 
 
@@ -152,5 +166,6 @@ mvn clean package -DskipTests
 
 ## 最后
 
-鸣谢： 若依
+鸣谢： 若依 
+
 
