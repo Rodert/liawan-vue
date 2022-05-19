@@ -42,7 +42,12 @@ import java.util.stream.Collectors;
 /**
  * Excel相关处理
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class ExcelUtil<T> {
     public static final String FORMULA_REGEX_STR = "=|-|\\+|@";

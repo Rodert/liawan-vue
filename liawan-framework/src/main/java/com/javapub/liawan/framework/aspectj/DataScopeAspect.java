@@ -15,7 +15,12 @@ import org.springframework.stereotype.Component;
 /**
  * 数据过滤处理
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Aspect
 @Component

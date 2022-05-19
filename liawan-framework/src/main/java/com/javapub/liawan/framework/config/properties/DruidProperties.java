@@ -7,7 +7,12 @@ import org.springframework.context.annotation.Configuration;
 /**
  * druid 配置属性
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Configuration
 public class DruidProperties {

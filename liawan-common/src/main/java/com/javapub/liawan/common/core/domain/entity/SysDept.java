@@ -13,7 +13,12 @@ import java.util.List;
 /**
  * 部门表 sys_dept
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SysDept extends BaseEntity {
     private static final long serialVersionUID = 1L;

@@ -20,7 +20,12 @@ import java.io.IOException;
 /**
  * token过滤器 验证token有效性
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {

@@ -10,7 +10,12 @@ import java.util.Date;
 /**
  * 定时任务调度日志表 sys_job_log
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SysJobLog extends BaseEntity {
     private static final long serialVersionUID = 1L;

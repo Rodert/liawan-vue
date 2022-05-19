@@ -8,7 +8,12 @@ import java.util.HashMap;
 /**
  * 操作消息提醒
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class AjaxResult extends HashMap<String, Object> {
     /**

@@ -13,7 +13,12 @@ import javax.validation.constraints.Size;
 /**
  * 字典类型表 sys_dict_type
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SysDictType extends BaseEntity {
     private static final long serialVersionUID = 1L;

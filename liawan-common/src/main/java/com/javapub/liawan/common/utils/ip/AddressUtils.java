@@ -11,7 +11,12 @@ import org.slf4j.LoggerFactory;
 /**
  * 获取地址类
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class AddressUtils {
     // IP地址查询

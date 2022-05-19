@@ -1,3 +1,5 @@
+> 本项目免费开源完整可查阅文档，由公众号 JavaPub 维护更新、可以协助适配不同操作系统及存储平台。
+
 # liawan-vue
 
 一个通用管理系统
@@ -35,13 +37,32 @@
 
 致力于提供一份详尽可供参考的文档
 
-- [redis安装参考文档及视频](/doc/redis%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md)
+- [redis安装参考文档及视频](/doc/redis安装教程.md)
+
+- [环境搭建](/doc/环境搭建.md)
 
 建设中...
 
 > 需要更多辅助，可以微信留言，微信号见文末【JavaPub】
 
+## 技术栈
+
+SpringBoot
+Spring Security
+JWT
+MyBatis
+Druid
+Vue
+Vuex
+Element-ui
+Axios
+Sass
+Quill
+docker-compose、Kafka、Redis、Apollo、prometheus、Grafana
+
 ## 环境搭建
+
+搭建视频地址：<https://www.bilibili.com/video/BV1Wu41167Na?share_source=copy_web>
 
 **启动前端：**
 
@@ -159,11 +180,8 @@ mvn clean package -DskipTests
 - [ ] 短信
 - [ ] 支持 RBAC 动态权限、数据权限
 - [ ] 接入商城
-- [ ] 
-
-
-
-
+- [ ] 系统监控
+- [ ] docker构建
 
 
 
@@ -173,3 +191,7 @@ mvn clean package -DskipTests
 鸣谢： 若依 
 
 
+## 项目更新日志
+
+- 2022.05.15 初始化项目、并完成部署
+- 2022.05.19 演示环境新增不允许提交功能

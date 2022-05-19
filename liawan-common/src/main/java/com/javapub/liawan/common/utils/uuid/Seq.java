@@ -6,7 +6,12 @@ import com.javapub.liawan.common.utils.StringUtils;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author javapub.liawan. 序列生成类
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description: 序列生成类
  */
 public class Seq {
     // 通用序列类型

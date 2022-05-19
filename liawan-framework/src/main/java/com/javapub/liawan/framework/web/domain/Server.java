@@ -21,7 +21,12 @@ import java.util.Properties;
 /**
  * 服务器相关信息
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class Server {
     private static final int OSHI_WAIT_SECOND = 1000;

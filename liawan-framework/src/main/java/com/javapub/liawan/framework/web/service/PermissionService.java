@@ -12,7 +12,12 @@ import java.util.Set;
 /**
  * RuoYi首创 自定义权限实现，ss取自SpringSecurity首字母
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Service("ss")
 public class PermissionService {

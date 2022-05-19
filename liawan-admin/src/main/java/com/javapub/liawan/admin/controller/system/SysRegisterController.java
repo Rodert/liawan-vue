@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 注册验证
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @RestController
 public class SysRegisterController extends BaseController {

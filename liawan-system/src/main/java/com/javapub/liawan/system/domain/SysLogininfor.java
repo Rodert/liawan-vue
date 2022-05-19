@@ -10,7 +10,12 @@ import java.util.Date;
 /**
  * 系统访问记录表 sys_logininfor
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SysLogininfor extends BaseEntity {
     private static final long serialVersionUID = 1L;

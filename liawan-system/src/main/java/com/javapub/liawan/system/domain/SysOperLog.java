@@ -10,7 +10,12 @@ import java.util.Date;
 /**
  * 操作日志记录表 oper_log
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SysOperLog extends BaseEntity {
     private static final long serialVersionUID = 1L;

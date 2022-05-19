@@ -20,7 +20,12 @@ import java.util.List;
 /**
  * 用户对象 sys_user
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;

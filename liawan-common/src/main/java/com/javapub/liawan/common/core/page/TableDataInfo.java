@@ -6,7 +6,12 @@ import java.util.List;
 /**
  * 表格分页数据对象
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class TableDataInfo implements Serializable {
     private static final long serialVersionUID = 1L;

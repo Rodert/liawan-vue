@@ -6,7 +6,12 @@ import com.javapub.liawan.common.utils.StringUtils;
 /**
  * sql操作工具类
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class SqlUtil {
     /**

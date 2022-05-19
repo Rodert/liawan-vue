@@ -10,7 +10,12 @@ import java.io.IOException;
 /**
  * Repeatable 过滤器
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class RepeatableFilter implements Filter {
     @Override

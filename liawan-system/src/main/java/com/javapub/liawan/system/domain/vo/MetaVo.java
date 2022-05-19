@@ -5,7 +5,12 @@ import com.javapub.liawan.common.utils.StringUtils;
 /**
  * 路由显示信息
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class MetaVo {
     /**

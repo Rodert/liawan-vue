@@ -10,7 +10,12 @@ import java.util.regex.Pattern;
 /**
  * 自定义xss校验注解实现
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class XssValidator implements ConstraintValidator<Xss, String> {
     private static final String HTML_PATTERN = "<(\\S*?)[^>]*>.*?|<.*? />";

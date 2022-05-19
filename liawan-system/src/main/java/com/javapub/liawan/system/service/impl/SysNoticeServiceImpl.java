@@ -11,7 +11,12 @@ import java.util.List;
 /**
  * 公告 服务层实现
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService {

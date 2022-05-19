@@ -9,7 +9,12 @@ package com.javapub.liawan.quartz.config;//package com.javapub.liawan.quartz.con
 ///**
 // * 定时任务配置（单机部署建议删除此类和qrtz数据库表，默认走内存会最高效）
 // * 
-// * @author ruoyi
+// * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
 // */
 //@Configuration
 //public class ScheduleConfig

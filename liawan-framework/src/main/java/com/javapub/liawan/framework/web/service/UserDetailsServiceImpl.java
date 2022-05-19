@@ -17,7 +17,12 @@ import org.springframework.stereotype.Service;
 /**
  * 用户验证处理
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

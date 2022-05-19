@@ -8,7 +8,12 @@ import java.util.Set;
 /**
  * bean对象属性验证
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class BeanValidators {
     public static void validateWithException(Validator validator, Object object, Class<?>... groups)

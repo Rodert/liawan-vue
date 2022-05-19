@@ -11,7 +11,12 @@ import java.util.TimeZone;
 /**
  * 程序注解配置
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Configuration
 // 表示通过aop框架暴露该代理对象,AopContext能够访问

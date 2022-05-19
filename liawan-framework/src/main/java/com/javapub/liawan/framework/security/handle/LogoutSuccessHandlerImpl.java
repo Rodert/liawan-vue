@@ -23,7 +23,12 @@ import java.io.IOException;
 /**
  * 自定义退出处理类 返回成功
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @Configuration
 public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {

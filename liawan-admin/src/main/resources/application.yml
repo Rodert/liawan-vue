@@ -62,13 +62,13 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: 127.0.0.1
+    host: 39.96.53.204
     # 端口，默认为6379
-    port: 6001
+    port: 6378
     # 数据库索引
     database: 1
     # 密码
-    password: javapub.1
+    password: javapub
     # 连接超时时间
     timeout: 10s
     lettuce:

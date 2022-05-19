@@ -25,7 +25,12 @@ import java.util.List;
 /**
  * web层通用数据处理
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class BaseController {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());

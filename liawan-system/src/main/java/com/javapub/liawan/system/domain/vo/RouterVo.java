@@ -7,7 +7,12 @@ import java.util.List;
 /**
  * 路由配置信息
  *
- * @author ruoyi
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RouterVo {

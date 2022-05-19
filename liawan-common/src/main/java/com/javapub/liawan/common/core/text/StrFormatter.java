@@ -5,7 +5,12 @@ import com.javapub.liawan.common.utils.StringUtils;
 /**
  * 字符串格式化
  *
- * @author javapub.liawan.
+ * @Author: JavaPub
+ * @License: https://github.com/Rodert/liawan-vue https://gitee.com/rodert/
+ * @Contact: https://javapub.blog.csdn.net/ http://liawan.javapub.net.cn/
+ * @Date: 2022
+ * @Version:
+ * @Description:
  */
 public class StrFormatter {
     public static final String EMPTY_JSON = "{}";
