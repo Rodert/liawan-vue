@@ -11,7 +11,10 @@
 
 centos7、redis5、
 
-<iframe src="//player.bilibili.com/player.html?bvid=BV1qR4y1c78t&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<video id="video" controls="" preload="none" poster="封面">
+      <source id="mp4" src="mp4格式视频" type="video/mp4">
+</videos>
+
 
 ## 安装教程
 
