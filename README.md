@@ -33,10 +33,13 @@
 
 ## 文档
 
-- [redis安装参考文档及视频](https://javapub.blog.csdn.net/article/details/124857707)
+致力于提供一份详尽可供参考的文档
 
+- [redis安装参考文档及视频](/doc/redis%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md)
 
 建设中...
+
+> 需要更多辅助，可以微信留言，微信号见文末【JavaPub】
 
 ## 环境搭建
 
