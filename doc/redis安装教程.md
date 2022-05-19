@@ -11,9 +11,7 @@
 
 centos7、redis5、
 
-<video id="video" controls="" preload="none" poster="封面">
-      <source id="mp4" src="mp4格式视频" type="video/mp4">
-</videos>
+视频：<https://www.bilibili.com/video/BV1qR4y1c78t/>
 
 
 ## 安装教程
