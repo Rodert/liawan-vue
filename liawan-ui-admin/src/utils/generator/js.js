@@ -23,9 +23,10 @@ export function makeUpJs(conf, type) {
   const methodList = mixinMethod(type)
   const uploadVarList = []
 
-  conf.fields.forEach(el => {
+  conf.fields.forEach(el = > {
     buildAttributes(el, dataList, ruleList, optionsList, methodList, propsList, uploadVarList)
-  })
+  }
+)
 
   const script = buildexport(
     conf,
@@ -70,9 +71,10 @@ function buildAttributes(el, dataList, ruleList, optionsList, methodList, propsL
   }
 
   if (el.children) {
-    el.children.forEach(el2 => {
+    el.children.forEach(el2 = > {
       buildAttributes(el2, dataList, ruleList, optionsList, methodList, propsList, uploadVarList)
-    })
+    }
+  )
   }
 }
 
@@ -110,9 +112,10 @@ function mixinMethod(type) {
 
   const methods = minxins[type]
   if (methods) {
-    Object.keys(methods).forEach(key => {
+    Object.keys(methods).forEach(key = > {
       list.push(methods[key])
-    })
+    }
+  )
   }
 
   return list
@@ -140,11 +143,13 @@ function buildRules(conf, ruleList) {
       rules.push(`{ required: true, ${type} message: '${message}', trigger: '${trigger[conf.tag]}' }`)
     }
     if (conf.regList && isArray(conf.regList)) {
-      conf.regList.forEach(item => {
-        if (item.pattern) {
-          rules.push(`{ pattern: ${eval(item.pattern)}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
-        }
-      })
+      conf.regList.forEach(item = > {
+        if(item.pattern
+    )
+      {
+        rules.push(`{ pattern: ${eval(item.pattern)}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
+      }
+    })
     }
     ruleList.push(`${conf.vModel}: [${rules.join(',')}],`)
   }

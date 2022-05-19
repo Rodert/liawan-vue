@@ -15,6 +15,7 @@ import com.javapub.liawan.framework.web.service.TokenService;
 import com.javapub.liawan.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.javapub.liawan.common.annotation.DemonstrationSwitch;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class SysProfileController extends BaseController {
      * 修改用户
      */
     @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @DemonstrationSwitch
     @PutMapping
     public AjaxResult updateProfile(@RequestBody SysUser user) {
         LoginUser loginUser = getLoginUser();
@@ -86,6 +88,7 @@ public class SysProfileController extends BaseController {
      * 重置密码
      */
     @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @DemonstrationSwitch
     @PutMapping("/updatePwd")
     public AjaxResult updatePwd(String oldPassword, String newPassword) {
         LoginUser loginUser = getLoginUser();
@@ -110,6 +113,7 @@ public class SysProfileController extends BaseController {
      * 头像上传
      */
     @Log(title = "用户头像", businessType = BusinessType.UPDATE)
+    @DemonstrationSwitch
     @PostMapping("/avatar")
     public AjaxResult avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {

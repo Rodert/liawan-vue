@@ -34,9 +34,10 @@ export default {
       }
     },
     initListener() {
-      this.$_resizeHandler = debounce(() => {
+      this.$_resizeHandler = debounce(() = > {
         this.resize()
-      }, 100)
+      }, 100
+    )
       window.addEventListener('resize', this.$_resizeHandler)
 
       this.$_sidebarElm = document.getElementsByClassName('sidebar-container')[0]

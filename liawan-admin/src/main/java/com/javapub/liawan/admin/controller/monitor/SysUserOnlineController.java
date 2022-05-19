@@ -14,6 +14,7 @@ import com.javapub.liawan.system.service.ISysUserOnlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import com.javapub.liawan.common.annotation.DemonstrationSwitch;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,6 +73,7 @@ public class SysUserOnlineController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('monitor:online:forceLogout')")
     @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @DemonstrationSwitch
     @DeleteMapping("/{tokenId}")
     public AjaxResult forceLogout(@PathVariable String tokenId) {
         redisCache.deleteObject(Constants.LOGIN_TOKEN_KEY + tokenId);

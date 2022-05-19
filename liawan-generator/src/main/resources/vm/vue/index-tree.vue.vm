@@ -327,33 +327,36 @@
                 #end
                 // 查询参数
                 queryParams: {
-                    #foreach ($column in $columns)
-                        #if($column.query)
-                                $column.javaField: null#if($foreach.count != $columns.size()),#end
+            #foreach ($column in $columns)
+                #if($column.query)
+                    $column.javaField: null#if($foreach.count != $columns.size()),#end
+                #end
+            #end
+        },
+            // 表单参数
+            form: {
+            }
+        ,
+            // 表单校验
+            rules: {
+                #foreach ($column in $columns)
+                    #if($column.required)
+                        #set($parentheseIndex=$column.columnComment.indexOf("（"))
+                        #if($parentheseIndex != -1)
+                            #set($comment=$column.columnComment.substring(0, $parentheseIndex))
+                        #else
+                            #set($comment=$column.columnComment)
                         #end
+                        $column.javaField: [
+                        {
+                            required: true, message: "$comment不能为空", trigger: #if($column.htmlType ==
+                            "select")"change"#else"blur"#end }
+                    ]#if($foreach.count != $columns.size()),#end
                     #end
-                },
-                // 表单参数
-                form: {},
-                // 表单校验
-                rules: {
-                    #foreach ($column in $columns)
-                        #if($column.required)
-                            #set($parentheseIndex=$column.columnComment.indexOf("（"))
-                            #if($parentheseIndex != -1)
-                                #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-                            #else
-                                #set($comment=$column.columnComment)
-                            #end
-                                $column.javaField: [
-                                {
-                                    required: true, message: "$comment不能为空", trigger: #if($column.htmlType ==
-                                    "select")"change"#else"blur"#end }
-                            ]#if($foreach.count != $columns.size()),#end
-                        #end
-                    #end
-                }
-            };
+                #end
+            }
+        }
+            ;
         },
         created() {
             this.getList();
@@ -377,10 +380,11 @@
                         }
                     #end
                 #end
-                list${BusinessName}(this.queryParams).then(response => {
+                list${BusinessName}(this.queryParams).then(response = > {
                     this.${businessName}List = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-                    this.loading = false;
-                });
+                this.loading = false;
+            })
+                ;
             },
             /** 转换${functionName}数据结构 */
             normalizer(node) {
@@ -395,12 +399,19 @@
             },
             /** 查询${functionName}下拉树结构 */
             getTreeselect() {
-                list${BusinessName}().then(response => {
+                list${BusinessName}().then(response = > {
                     this.${businessName}Options = [];
-                    const data = {${treeCode}: 0, ${treeName}: '顶级节点', children: []};
-                    data.children = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-                    this.${businessName}Options.push(data);
-                });
+                const data = {${treeCode}:
+                0, ${treeName}:
+                '顶级节点', children
+            :
+                []
+            }
+                ;
+                data.children = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
+                this.${businessName}Options.push(data);
+            })
+                ;
             },
             // 取消按钮
             cancel() {
@@ -410,18 +421,19 @@
             // 表单重置
             reset() {
                 this.form = {
-                    #foreach ($column in $columns)
-                        #if($column.htmlType == "radio")
-                            $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
-                            #else"0"#end#if($foreach.count != $columns.size()),#end
+                #foreach ($column in $columns)
+                    #if($column.htmlType == "radio")
+                        $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
+                    #else"0"#end#if($foreach.count != $columns.size()),#end
 
-                        #elseif($column.htmlType == "checkbox")
-                                $column.javaField: []#if($foreach.count != $columns.size()),#end
-                        #else
-                                $column.javaField: null#if($foreach.count != $columns.size()),#end
-                        #end
+                    #elseif($column.htmlType == "checkbox")
+                        $column.javaField: []#if($foreach.count != $columns.size()),#end
+                    #else
+                        $column.javaField: null#if($foreach.count != $columns.size()),#end
                     #end
-                };
+                #end
+            }
+                ;
                 this.resetForm("form");
             },
             /** 搜索按钮操作 */
@@ -455,9 +467,10 @@
             toggleExpandAll() {
                 this.refreshTable = false;
                 this.isExpandAll = !this.isExpandAll;
-                this.$nextTick(() => {
+                this.$nextTick(() = > {
                     this.refreshTable = true;
-                });
+            })
+                ;
             },
             /** 修改按钮操作 */
             handleUpdate(row) {
@@ -466,33 +479,35 @@
                 if (row != null) {
                     this.form.${treeParentCode} = row.${treeCode};
                 }
-                get${BusinessName}(row.${pkColumn.javaField}).then(response => {
+                get${BusinessName}(row.${pkColumn.javaField}).then(response = > {
                     this.form = response.data;
-                    #foreach ($column in $columns)
-                        #if($column.htmlType == "checkbox")
-                            this.form.$column.javaField = this.form.${column.javaField}.split(",");
-                        #end
+                #foreach ($column in $columns)
+                    #if($column.htmlType == "checkbox")
+                        this.form.$column.javaField = this.form.${column.javaField}.split(",");
                     #end
-                    this.open = true;
-                    this.title = "修改${functionName}";
-                });
+                #end
+                this.open = true;
+                this.title = "修改${functionName}";
+            })
+                ;
             },
             /** 提交按钮 */
             submitForm() {
                 this.
             #
                 [[$]]
-                #refs["form"].validate(valid => {
-                    if (valid) {
+            #
+                refs["form"].validate(valid = > {
+                    if(valid) {
                         #foreach($column in $columns)
-                        #if($column.htmlType == "checkbox")
-                        this.form.$column.javaField = this.form.$
-                        {
-                            column.javaField
-                        }
-                    .
-                        join(",");
-                        #end
+                            #if($column.htmlType == "checkbox")
+                                this.form.$column.javaField = this.form.$
+                                {
+                                    column.javaField
+                                }
+                            .
+                                join(",");
+                            #end
                         #end
                         if (this.form.${
                             pkColumn.javaField
@@ -505,15 +520,16 @@
                             {
                                 BusinessName
                             }
-                            (this.form).then(response => {
+                            (this.form).then(response = > {
                                 this.
-                            #
-                                [[$modal]]
-                            #.
-                                msgSuccess("修改成功");
-                                this.open = false;
-                                this.getList();
-                            });
+                        #
+                            [[$modal]]
+                        #.
+                            msgSuccess("修改成功");
+                            this.open = false;
+                            this.getList();
+                        })
+                            ;
                         }
                     else
                         {
@@ -521,18 +537,21 @@
                             {
                                 BusinessName
                             }
-                            (this.form).then(response => {
+                            (this.form).then(response = > {
                                 this.
-                            #
-                                [[$modal]]
-                            #.
-                                msgSuccess("新增成功");
-                                this.open = false;
-                                this.getList();
-                            });
+                        #
+                            [[$modal]]
+                        #.
+                            msgSuccess("新增成功");
+                            this.open = false;
+                            this.getList();
+                        })
+                            ;
                         }
                     }
-                });
+                }
+            )
+                ;
             },
             /** 删除按钮操作 */
             handleDelete(row) {
@@ -557,15 +576,17 @@
                     }
                 )
                     ;
-                }).then(() => {
+                }).then(() = > {
                     this.getList();
-                    this.
-                #
-                    [[$modal]]
-                #.
-                    msgSuccess("删除成功");
-                }).catch(() => {
-                });
+                this.
+            #
+                [[$modal]]
+            #.
+                msgSuccess("删除成功");
+            }).
+                catch(() = > {}
+            )
+                ;
             }
         }
     };

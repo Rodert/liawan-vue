@@ -163,19 +163,22 @@
     <select id="checkUserNameUnique" parameterType="String" resultType="int">
         select count(1)
         from sys_user
-        where user_name = #{userName} limit 1
+        where user_name = #{userName}
+        limit 1
     </select>
 
     <select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">
         select user_id, phonenumber
         from sys_user
-        where phonenumber = #{phonenumber} limit 1
+        where phonenumber = #{phonenumber}
+        limit 1
     </select>
 
     <select id="checkEmailUnique" parameterType="String" resultMap="SysUserResult">
         select user_id, email
         from sys_user
-        where email = #{email} limit 1
+        where email = #{email}
+        limit 1
     </select>
 
     <insert id="insertUser" parameterType="SysUser" useGeneratedKeys="true" keyProperty="userId">

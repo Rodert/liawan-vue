@@ -1,5 +1,6 @@
 package com.javapub.liawan.admin.controller.system;
 
+import com.javapub.liawan.common.annotation.DemonstrationSwitch;
 import com.javapub.liawan.common.core.controller.BaseController;
 import com.javapub.liawan.common.core.domain.AjaxResult;
 import com.javapub.liawan.common.core.domain.model.RegisterBody;
@@ -29,6 +30,7 @@ public class SysRegisterController extends BaseController {
     @Autowired
     private ISysConfigService configService;
 
+    @DemonstrationSwitch
     @PostMapping("/register")
     public AjaxResult register(@RequestBody RegisterBody user) {
         if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {

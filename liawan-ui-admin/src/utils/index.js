@@ -67,13 +67,14 @@ export function getQueryObject(url) {
   const search = url.substring(url.lastIndexOf('?') + 1)
   const obj = {}
   const reg = /([^?&=]+)=([^?&=]*)/g
-  search.replace(reg, (rs, $1, $2) => {
+  search.replace(reg, (rs, $1, $2) = > {
     const name = decodeURIComponent($1)
     let val = decodeURIComponent($2)
     val = String(val)
     obj[name] = val
     return rs
-  })
+  }
+)
   return obj
 }
 
@@ -114,11 +115,13 @@ export function cleanArray(actual) {
 export function param(json) {
   if (!json) return ''
   return cleanArray(
-    Object.keys(json).map(key => {
-      if (json[key] === undefined) return ''
-      return encodeURIComponent(key) + '=' + encodeURIComponent(json[key])
-    })
-  ).join('&')
+    Object.keys(json).map(key = > {
+      if(json[key] === undefined)
+  return ''
+  return encodeURIComponent(key) + '=' + encodeURIComponent(json[key])
+})
+).
+  join('&')
 }
 
 /**
@@ -132,14 +135,16 @@ export function param2Obj(url) {
   }
   const obj = {}
   const searchArr = search.split('&')
-  searchArr.forEach(v => {
+  searchArr.forEach(v = > {
     const index = v.indexOf('=')
-    if (index !== -1) {
-      const name = v.substring(0, index)
-      const val = v.substring(index + 1, v.length)
-      obj[name] = val
-    }
-  })
+    if(index !== -1
+)
+  {
+    const name = v.substring(0, index)
+    const val = v.substring(index + 1, v.length)
+    obj[name] = val
+  }
+})
   return obj
 }
 
@@ -166,14 +171,18 @@ export function objectMerge(target, source) {
   if (Array.isArray(source)) {
     return source.slice()
   }
-  Object.keys(source).forEach(property => {
+  Object.keys(source).forEach(property = > {
     const sourceProperty = source[property]
-    if (typeof sourceProperty === 'object') {
-      target[property] = objectMerge(target[property], sourceProperty)
-    } else {
-      target[property] = sourceProperty
-    }
-  })
+    if(typeof sourceProperty === 'object'
+)
+  {
+    target[property] = objectMerge(target[property], sourceProperty)
+  }
+else
+  {
+    target[property] = sourceProperty
+  }
+})
   return target
 }
 
@@ -235,7 +244,9 @@ export function debounce(func, wait, immediate) {
     }
   }
 
-  return function (...args) {
+  return function (...args
+)
+  {
     context = this
     timestamp = +new Date()
     const callNow = immediate && !timeout
@@ -262,13 +273,17 @@ export function deepClone(source) {
     throw new Error('error arguments', 'deepClone')
   }
   const targetObj = source.constructor === Array ? [] : {}
-  Object.keys(source).forEach(keys => {
-    if (source[keys] && typeof source[keys] === 'object') {
-      targetObj[keys] = deepClone(source[keys])
-    } else {
-      targetObj[keys] = source[keys]
-    }
-  })
+  Object.keys(source).forEach(keys = > {
+    if(source[keys] && typeof source[keys] === 'object'
+)
+  {
+    targetObj[keys] = deepClone(source[keys])
+  }
+else
+  {
+    targetObj[keys] = source[keys]
+  }
+})
   return targetObj
 }
 
@@ -327,8 +342,13 @@ export function makeMap(str, expectsLowerCase) {
     map[list[i]] = true
   }
   return expectsLowerCase
-    ? val => map[val.toLowerCase()]
-    : val => map[val]
+    ? val =
+>
+  map[val.toLowerCase()]
+:
+  val =
+>
+  map[val]
 }
 
 export const exportDefault = 'export default '
@@ -376,12 +396,14 @@ export const beautifierConf = {
 
 // 首字母大小
 export function titleCase(str) {
-  return str.replace(/( |^)[a-z]/g, L => L.toUpperCase())
+  return str.replace(/( |^)[a-z]/g, L = > L.toUpperCase()
+)
 }
 
 // 下划转驼峰
 export function camelCase(str) {
-  return str.replace(/_[a-z]/g, str1 => str1.substr(-1).toUpperCase())
+  return str.replace(/_[a-z]/g, str1 = > str1.substr(-1).toUpperCase()
+)
 }
 
 export function isNumberStr(str) {

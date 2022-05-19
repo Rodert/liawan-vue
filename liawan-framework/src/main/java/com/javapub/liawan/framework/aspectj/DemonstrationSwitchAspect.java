@@ -43,7 +43,7 @@ public class DemonstrationSwitchAspect {
     @Around(value = "demonstrationPoint(demonstrationSwitch)")
     public AjaxResult doBefore(ProceedingJoinPoint joinPoint, DemonstrationSwitch demonstrationSwitch) {
         if (demonstrationSwitch.onOff()) {
-            return AjaxResult.error(HttpStatus.CONFLICT, "演示环境不支持变更操作，跟着教程5分钟搭建本地环境（并提供视频教程）。https://gitee.com/rodert/liawan-vue");
+            return AjaxResult.error(HttpStatus.CONFLICT, "演示环境不支持写操作，\n 跟着教程5分钟搭建本地环境（还提供视频教程哦）。\n https://gitee.com/rodert/liawan-vue");
         }
         try {
             return AjaxResult.success(joinPoint.proceed());

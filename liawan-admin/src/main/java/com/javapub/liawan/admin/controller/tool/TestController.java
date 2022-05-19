@@ -1,10 +1,12 @@
 package com.javapub.liawan.admin.controller.tool;
 
+import com.javapub.liawan.common.annotation.DemonstrationSwitch;
 import com.javapub.liawan.common.core.controller.BaseController;
 import com.javapub.liawan.common.core.domain.AjaxResult;
 import com.javapub.liawan.common.utils.StringUtils;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
+import com.javapub.liawan.common.annotation.DemonstrationSwitch;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -57,6 +59,7 @@ public class TestController extends BaseController {
             @ApiImplicitParam(name = "password", value = "用户密码", dataType = "String", dataTypeClass = String.class),
             @ApiImplicitParam(name = "mobile", value = "用户手机", dataType = "String", dataTypeClass = String.class)
     })
+    @DemonstrationSwitch
     @PostMapping("/save")
     public AjaxResult save(UserEntity user) {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
@@ -66,6 +69,7 @@ public class TestController extends BaseController {
     }
 
     @ApiOperation("更新用户")
+    @DemonstrationSwitch
     @PutMapping("/update")
     public AjaxResult update(@RequestBody UserEntity user) {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
@@ -80,6 +84,7 @@ public class TestController extends BaseController {
 
     @ApiOperation("删除用户信息")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path", dataTypeClass = Integer.class)
+    @DemonstrationSwitch
     @DeleteMapping("/{userId}")
     public AjaxResult delete(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {

@@ -313,31 +313,32 @@
     const data = reactive({
         form: {},
         queryParams: {
-            #foreach ($column in $columns)
-                #if($column.query)
-                        $column.javaField: null#if($foreach.count != $columns.size()),#end
-                #end
+        #foreach ($column in $columns)
+            #if($column.query)
+                $column.javaField: null#if($foreach.count != $columns.size()),#end
             #end
-        },
-        rules: {
-            #foreach ($column in $columns)
-                #if($column.required)
-                    #set($parentheseIndex=$column.columnComment.indexOf("（"))
-                    #if($parentheseIndex != -1)
-                        #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-                    #else
-                        #set($comment=$column.columnComment)
-                    #end
-                        $column.javaField: [
-                        {
-                            required: true,
-                            message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"
-                            #else"blur"#end }
-                    ]#if($foreach.count != $columns.size()),#end
+        #end
+    },
+    rules: {
+        #foreach ($column in $columns)
+            #if($column.required)
+                #set($parentheseIndex=$column.columnComment.indexOf("（"))
+                #if($parentheseIndex != -1)
+                    #set($comment=$column.columnComment.substring(0, $parentheseIndex))
+                #else
+                    #set($comment=$column.columnComment)
                 #end
+                $column.javaField: [
+                {
+                    required: true,
+                    message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"
+                    #else"blur"#end }
+            ]#if($foreach.count != $columns.size()),#end
             #end
-        }
-    });
+        #end
+    }
+    })
+    ;
 
     const {queryParams, form, rules} = toRefs(data);
 
@@ -359,20 +360,31 @@
                 }
             #end
         #end
-        list${BusinessName}(queryParams.value).then(response => {
+        list${BusinessName}(queryParams.value).then(response = > {
                 ${businessName}List.value = proxy.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-            loading.value = false;
-        });
+        loading.value = false;
+    })
+        ;
     }
 
     /** 查询${functionName}下拉树结构 */
-    async function getTreeselect() {
-        await list${BusinessName}().then(response => {
+    async
+
+    function getTreeselect() {
+        await
+        list${BusinessName}().then(response = > {
                 ${businessName}Options.value = [];
-            const data = {${treeCode}: 0, ${treeName}: '顶级节点', children: []};
-            data.children = proxy.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-                ${businessName}Options.value.push(data);
-        });
+        const data = {${treeCode}:
+        0, ${treeName}:
+        '顶级节点', children
+    :
+        []
+    }
+        ;
+        data.children = proxy.handleTree(response.data, "${treeCode}", "${treeParentCode}");
+            ${businessName}Options.value.push(data);
+    })
+        ;
     }
 
     // 取消按钮
@@ -384,18 +396,19 @@
     // 表单重置
     function reset() {
         form.value = {
-            #foreach ($column in $columns)
-                #if($column.htmlType == "radio")
-                    $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
-                    #else"0"#end#if($foreach.count != $columns.size()),#end
+        #foreach ($column in $columns)
+            #if($column.htmlType == "radio")
+                $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
+            #else"0"#end#if($foreach.count != $columns.size()),#end
 
-                #elseif($column.htmlType == "checkbox")
-                        $column.javaField: []#if($foreach.count != $columns.size()),#end
-                #else
-                        $column.javaField: null#if($foreach.count != $columns.size()),#end
-                #end
+            #elseif($column.htmlType == "checkbox")
+                $column.javaField: []#if($foreach.count != $columns.size()),#end
+            #else
+                $column.javaField: null#if($foreach.count != $columns.size()),#end
             #end
-        };
+        #end
+    }
+        ;
         proxy.resetForm("${businessName}Ref");
     }
 
@@ -417,9 +430,12 @@
     }
 
     /** 新增按钮操作 */
-    async function handleAdd(row) {
+    async
+
+    function handleAdd(row) {
         reset();
-        await getTreeselect();
+        await
+        getTreeselect();
         if (row != null && row.${treeCode}) {
             form.value.${treeParentCode} = row.${treeCode};
         } else {
@@ -433,28 +449,33 @@
     function toggleExpandAll() {
         refreshTable.value = false;
         isExpandAll.value = !isExpandAll.value;
-        nextTick(() => {
+        nextTick(() = > {
             refreshTable.value = true;
-        });
+    })
+        ;
     }
 
     /** 修改按钮操作 */
-    async function handleUpdate(row) {
+    async
+
+    function handleUpdate(row) {
         reset();
-        await getTreeselect();
+        await
+        getTreeselect();
         if (row != null) {
             form.value.${treeParentCode} = row.${treeCode};
         }
-        get${BusinessName}(row.${pkColumn.javaField}).then(response => {
+        get${BusinessName}(row.${pkColumn.javaField}).then(response = > {
             form.value = response.data;
-            #foreach ($column in $columns)
-                #if($column.htmlType == "checkbox")
-                    form.value.$column.javaField = form.value.${column.javaField}.split(",");
-                #end
+        #foreach ($column in $columns)
+            #if($column.htmlType == "checkbox")
+                form.value.$column.javaField = form.value.${column.javaField}.split(",");
             #end
-            open.value = true;
-            title.value = "修改${functionName}";
-        });
+        #end
+        open.value = true;
+        title.value = "修改${functionName}";
+    })
+        ;
     }
 
     /** 提交按钮 */
@@ -462,17 +483,18 @@
         proxy.
     #
         [[$]]
-        #refs["${businessName}Ref"].validate(valid => {
-            if (valid) {
+    #
+        refs["${businessName}Ref"].validate(valid = > {
+            if(valid) {
                 #foreach($column in $columns)
-                #if($column.htmlType == "checkbox")
-                form.value.$column.javaField = form.value.$
-                {
-                    column.javaField
-                }
-            .
-                join(",");
-                #end
+                    #if($column.htmlType == "checkbox")
+                        form.value.$column.javaField = form.value.$
+                        {
+                            column.javaField
+                        }
+                    .
+                        join(",");
+                    #end
                 #end
                 if (form.value.${
                     pkColumn.javaField
@@ -485,15 +507,16 @@
                     {
                         BusinessName
                     }
-                    (form.value).then(response => {
+                    (form.value).then(response = > {
                         proxy.
-                    #
-                        [[$modal]]
-                    #.
-                        msgSuccess("修改成功");
-                        open.value = false;
-                        getList();
-                    });
+                #
+                    [[$modal]]
+                #.
+                    msgSuccess("修改成功");
+                    open.value = false;
+                    getList();
+                })
+                    ;
                 }
             else
                 {
@@ -501,18 +524,21 @@
                     {
                         BusinessName
                     }
-                    (form.value).then(response => {
+                    (form.value).then(response = > {
                         proxy.
-                    #
-                        [[$modal]]
-                    #.
-                        msgSuccess("新增成功");
-                        open.value = false;
-                        getList();
-                    });
+                #
+                    [[$modal]]
+                #.
+                    msgSuccess("新增成功");
+                    open.value = false;
+                    getList();
+                })
+                    ;
                 }
             }
-        });
+        }
+    )
+        ;
     }
 
     /** 删除按钮操作 */
@@ -538,15 +564,17 @@
             }
         )
             ;
-        }).then(() => {
+        }).then(() = > {
             getList();
-            proxy.
-        #
-            [[$modal]]
-        #.
-            msgSuccess("删除成功");
-        }).catch(() => {
-        });
+        proxy.
+    #
+        [[$modal]]
+    #.
+        msgSuccess("删除成功");
+    }).
+        catch(() = > {}
+    )
+        ;
     }
 
     getList();

@@ -9,7 +9,8 @@ function install() {
         labelField: 'dictLabel',
         valueField: 'dictValue',
         request(dictMeta) {
-          return getDicts(dictMeta.type).then(res => res.data)
+          return getDicts(dictMeta.type).then(res = > res.data
+        )
         },
       },
     },

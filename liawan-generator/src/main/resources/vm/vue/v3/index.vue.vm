@@ -395,31 +395,32 @@
         queryParams: {
             pageNum: 1,
             pageSize: 10,
-            #foreach ($column in $columns)
-                #if($column.query)
-                        $column.javaField: null#if($foreach.count != $columns.size()),#end
-                #end
+        #foreach ($column in $columns)
+            #if($column.query)
+                $column.javaField: null#if($foreach.count != $columns.size()),#end
             #end
-        },
-        rules: {
-            #foreach ($column in $columns)
-                #if($column.required)
-                    #set($parentheseIndex=$column.columnComment.indexOf("（"))
-                    #if($parentheseIndex != -1)
-                        #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-                    #else
-                        #set($comment=$column.columnComment)
-                    #end
-                        $column.javaField: [
-                        {
-                            required: true,
-                            message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"
-                            #else"blur"#end }
-                    ]#if($foreach.count != $columns.size()),#end
+        #end
+    },
+    rules: {
+        #foreach ($column in $columns)
+            #if($column.required)
+                #set($parentheseIndex=$column.columnComment.indexOf("（"))
+                #if($parentheseIndex != -1)
+                    #set($comment=$column.columnComment.substring(0, $parentheseIndex))
+                #else
+                    #set($comment=$column.columnComment)
                 #end
+                $column.javaField: [
+                {
+                    required: true,
+                    message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"
+                    #else"blur"#end }
+            ]#if($foreach.count != $columns.size()),#end
             #end
-        }
-    });
+        #end
+    }
+    })
+    ;
 
     const {queryParams, form, rules} = toRefs(data);
 
@@ -441,11 +442,12 @@
                 }
             #end
         #end
-        list${BusinessName}(queryParams.value).then(response => {
+        list${BusinessName}(queryParams.value).then(response = > {
                 ${businessName}List.value = response.rows;
-            total.value = response.total;
-            loading.value = false;
-        });
+        total.value = response.total;
+        loading.value = false;
+    })
+        ;
     }
 
     // 取消按钮
@@ -457,17 +459,18 @@
     // 表单重置
     function reset() {
         form.value = {
-            #foreach ($column in $columns)
-                #if($column.htmlType == "radio")
-                    $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
-                    #else"0"#end#if($foreach.count != $columns.size()),#end
-                #elseif($column.htmlType == "checkbox")
-                        $column.javaField: []#if($foreach.count != $columns.size()),#end
-                #else
-                        $column.javaField: null#if($foreach.count != $columns.size()),#end
-                #end
+        #foreach ($column in $columns)
+            #if($column.htmlType == "radio")
+                $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
+            #else"0"#end#if($foreach.count != $columns.size()),#end
+            #elseif($column.htmlType == "checkbox")
+                $column.javaField: []#if($foreach.count != $columns.size()),#end
+            #else
+                $column.javaField: null#if($foreach.count != $columns.size()),#end
             #end
-        };
+        #end
+    }
+        ;
         #if($table.sub)
                 ${subclassName}List.value = [];
         #end
@@ -494,7 +497,8 @@
 
     // 多选框选中数据
     function handleSelectionChange(selection) {
-        ids.value = selection.map(item => item.${pkColumn.javaField});
+        ids.value = selection.map(item = > item.${pkColumn.javaField})
+        ;
         single.value = selection.length != 1;
         multiple.value = !selection.length;
     }
@@ -509,20 +513,22 @@
     /** 修改按钮操作 */
     function handleUpdate(row) {
         reset();
-        const ${pkColumn.javaField} = row.${pkColumn.javaField} || ids.value
-        get${BusinessName}(${pkColumn.javaField}).then(response => {
+        const ${pkColumn.javaField} =
+        row.${pkColumn.javaField} || ids.value
+        get${BusinessName}(${pkColumn.javaField}).then(response = > {
             form.value = response.data;
-            #foreach ($column in $columns)
-                #if($column.htmlType == "checkbox")
-                    form.value.$column.javaField = form.value.${column.javaField}.split(",");
-                #end
+        #foreach ($column in $columns)
+            #if($column.htmlType == "checkbox")
+                form.value.$column.javaField = form.value.${column.javaField}.split(",");
             #end
-            #if($table.sub)
-                    ${subclassName}List.value = response.data.${subclassName}List;
-            #end
-            open.value = true;
-            title.value = "修改${functionName}";
-        });
+        #end
+        #if($table.sub)
+                ${subclassName}List.value = response.data.${subclassName}List;
+        #end
+        open.value = true;
+        title.value = "修改${functionName}";
+    })
+        ;
     }
 
     /** 提交按钮 */
@@ -530,24 +536,25 @@
         proxy.
     #
         [[$]]
-        #refs["${businessName}Ref"].validate(valid => {
-            if (valid) {
+    #
+        refs["${businessName}Ref"].validate(valid = > {
+            if(valid) {
                 #foreach($column in $columns)
-                #if($column.htmlType == "checkbox")
-                form.value.$column.javaField = form.value.$
-                {
-                    column.javaField
-                }
-            .
-                join(",");
-                #end
+                    #if($column.htmlType == "checkbox")
+                        form.value.$column.javaField = form.value.$
+                        {
+                            column.javaField
+                        }
+                    .
+                        join(",");
+                    #end
                 #end
                 #if($table.sub)
-                form.value.$
-                {
-                    subclassName
-                }
-                List = ${subclassName}List.value;
+                    form.value.$
+                    {
+                        subclassName
+                    }
+                    List = ${subclassName}List.value;
                 #end
                 if (form.value.${
                     pkColumn.javaField
@@ -560,15 +567,16 @@
                     {
                         BusinessName
                     }
-                    (form.value).then(response => {
+                    (form.value).then(response = > {
                         proxy.
-                    #
-                        [[$modal]]
-                    #.
-                        msgSuccess("修改成功");
-                        open.value = false;
-                        getList();
-                    });
+                #
+                    [[$modal]]
+                #.
+                    msgSuccess("修改成功");
+                    open.value = false;
+                    getList();
+                })
+                    ;
                 }
             else
                 {
@@ -576,18 +584,21 @@
                     {
                         BusinessName
                     }
-                    (form.value).then(response => {
+                    (form.value).then(response = > {
                         proxy.
-                    #
-                        [[$modal]]
-                    #.
-                        msgSuccess("新增成功");
-                        open.value = false;
-                        getList();
-                    });
+                #
+                    [[$modal]]
+                #.
+                    msgSuccess("新增成功");
+                    open.value = false;
+                    getList();
+                })
+                    ;
                 }
             }
-        });
+        }
+    )
+        ;
     }
 
     /** 删除按钮操作 */
@@ -608,107 +619,110 @@
                 BusinessName
             }
             (${pkColumn.javaField}s);
-        }).then(() => {
+        }).then(() = > {
             getList();
-            proxy.
-        #
-            [[$modal]]
-        #.
-            msgSuccess("删除成功");
-        }).catch(() => {
-        });
+        proxy.
+    #
+        [[$modal]]
+    #.
+        msgSuccess("删除成功");
+    }).
+        catch(() = > {}
+    )
+        ;
     }
 
-    #if($table.sub)
+        #if($table.sub)
 
-    /** ${subTable.functionName}序号 */
-    function row$ {
-        subClassName
-    }
-
-    Index({row, rowIndex})
-    {
-        row.index = rowIndex + 1;
-    }
-
-    /** ${subTable.functionName}添加按钮操作 */
-    function handleAdd$ {
-        subClassName
-    }
-
-    ()
-    {
-        let obj = {};
-        #foreach($column in $subTable.columns)
-        #if($column.pk || $column.javaField == ${subTableFkclassName})
-        #elseif($column.list && "" != $javaField)
-        obj.$column.javaField = "";
-        #end
-        #end
-        ${subclassName}
-        List.value.push(obj);
-    }
-
-    /** ${subTable.functionName}删除按钮操作 */
-    function handleDelete$ {
-        subClassName
-    }
-
-    ()
-    {
-        if (checked${
+        /** ${subTable.functionName}序号 */
+        function row$ {
             subClassName
         }
-    .
-        value.length == 0
-    )
+
+        Index({row, rowIndex})
         {
-            proxy.
-        #
-            [[$modal]]
-        #.
-            msgError("请先选择要删除的${subTable.functionName}数据");
+            row.index = rowIndex + 1;
         }
-    else
+
+        /** ${subTable.functionName}添加按钮操作 */
+        function handleAdd$ {
+            subClassName
+        }
+
+        ()
         {
-            const ${subclassName}s = ${subclassName}List.value;
-            const checked$
-            {
+            let obj = {};
+            #foreach($column in $subTable.columns)
+                #if($column.pk || $column.javaField == ${subTableFkclassName})
+                #elseif($column.list && "" != $javaField)
+                    obj.$column.javaField = "";
+                #end
+            #end
+            ${subclassName}
+            List.value.push(obj);
+        }
+
+        /** ${subTable.functionName}删除按钮操作 */
+        function handleDelete$ {
+            subClassName
+        }
+
+        ()
+        {
+            if (checked${
                 subClassName
             }
-            s = checked$
+        .
+            value.length == 0
+        )
+            {
+                proxy.
+            #
+                [[$modal]]
+            #.
+                msgError("请先选择要删除的${subTable.functionName}数据");
+            }
+        else
+            {
+                const ${subclassName}s = ${subclassName}List.value;
+                const checked$
+                {
+                    subClassName
+                }
+                s = checked$
+                {
+                    subClassName
+                }
+            .
+                value;
+                ${subclassName}
+                List.value = ${subclassName}s.filter(function (item) {
+                    return checked$
+                    {
+                        subClassName
+                    }
+                    s.indexOf(item.index) == -1
+                });
+            }
+        }
+
+        /** 复选框选中数据 */
+        function handle$ {
+            subClassName
+        }
+
+        SelectionChange(selection)
+        {
+            checked$
             {
                 subClassName
             }
         .
-            value;
-            ${subclassName}
-            List.value = ${subclassName}s.filter(function (item) {
-                return checked$
-                {
-                    subClassName
-                }
-                s.indexOf(item.index) == -1
-            });
+            value = selection.map(item = > item.index
+        )
         }
-    }
 
-    /** 复选框选中数据 */
-    function handle$ {
-        subClassName
-    }
-
-    SelectionChange(selection)
-    {
-        checked$
-        {
-            subClassName
-        }
-    .
-        value = selection.map(item => item.index)
-    }
-
-    #end
+        #end
 
     /** 导出按钮操作 */
     function handleExport() {

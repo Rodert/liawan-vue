@@ -1,5 +1,6 @@
 package com.javapub.liawan.admin.controller.common;
 
+import com.javapub.liawan.common.annotation.DemonstrationSwitch;
 import com.javapub.liawan.common.config.LiaWanConfig;
 import com.javapub.liawan.common.constant.Constants;
 import com.javapub.liawan.common.core.domain.AjaxResult;
@@ -69,6 +70,7 @@ public class CommonController {
     /**
      * 通用上传请求（单个）
      */
+    @DemonstrationSwitch
     @PostMapping("/upload")
     public AjaxResult uploadFile(MultipartFile file) throws Exception {
         try {
@@ -91,6 +93,7 @@ public class CommonController {
     /**
      * 通用上传请求（多个）
      */
+    @DemonstrationSwitch
     @PostMapping("/uploads")
     public AjaxResult uploadFiles(List<MultipartFile> files) throws Exception {
         try {
