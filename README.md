@@ -33,6 +33,7 @@
 
 ## 文档
 
+- [redis安装参考文档及视频](https://javapub.blog.csdn.net/article/details/124857707)
 
 
 建设中...
