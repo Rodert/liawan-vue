@@ -16,24 +16,17 @@ export default {
         break;
       default: {
         const clipboard = new Clipboard(el, {
-          text: () = > binding.value,
-          action
-      :
-        () =
-      >
-        binding.arg === 'cut' ? 'cut' : 'copy'
-      })
-        ;
-        clipboard.on('success', e = > {
+          text: () => binding.value,
+          action: () => binding.arg === 'cut' ? 'cut' : 'copy'
+        });
+        clipboard.on('success', e => {
           const callback = el._vClipBoard_success;
-        callback && callback(e);
-      })
-        ;
-        clipboard.on('error', e = > {
+          callback && callback(e);
+        });
+        clipboard.on('error', e => {
           const callback = el._vClipBoard_error;
-        callback && callback(e);
-      })
-        ;
+          callback && callback(e);
+        });
         el._vClipBoard = clipboard;
       }
     }
@@ -47,9 +40,7 @@ export default {
       el._vClipBoard.text = function () {
         return binding.value;
       };
-      el._vClipBoard.action = () =
-    >
-      binding.arg === 'cut' ? 'cut' : 'copy';
+      el._vClipBoard.action = () => binding.arg === 'cut' ? 'cut' : 'copy';
     }
   },
   unbind(el, binding) {

@@ -32,19 +32,17 @@ export function parseTime(time, pattern) {
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) = > {
+  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if(key === 'a'
-)
-  {
-    return ['日', '一', '二', '三', '四', '五', '六'][value]
-  }
-  if (result.length > 0 && value < 10) {
-    value = '0' + value
-  }
-  return value || 0
-})
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
+    if (result.length > 0 && value < 10) {
+      value = '0' + value
+    }
+    return value || 0
+  })
   return time_str
 }
 
@@ -76,14 +74,12 @@ export function selectDictLabel(datas, value) {
     return "";
   }
   var actions = [];
-  Object.keys(datas).some((key) = > {
-    if(datas[key].value == ('' + value)
-)
-  {
-    actions.push(datas[key].label);
-    return true;
-  }
-})
+  Object.keys(datas).some((key) => {
+    if (datas[key].value == ('' + value)) {
+      actions.push(datas[key].label);
+      return true;
+    }
+  })
   if (actions.length === 0) {
     actions.push(value);
   }
@@ -98,20 +94,18 @@ export function selectDictLabels(datas, value, separator) {
   var actions = [];
   var currentSeparator = undefined === separator ? "," : separator;
   var temp = value.split(currentSeparator);
-  Object.keys(value.split(currentSeparator)).some((val) = > {
+  Object.keys(value.split(currentSeparator)).some((val) => {
     var match = false;
-  Object.keys(datas).some((key) = > {
-    if(datas[key].value == ('' + temp[val])
-)
-  {
-    actions.push(datas[key].label + currentSeparator);
-    match = true;
-  }
-})
-  if (!match) {
-    actions.push(temp[val] + currentSeparator);
-  }
-})
+    Object.keys(datas).some((key) => {
+      if (datas[key].value == ('' + temp[val])) {
+        actions.push(datas[key].label + currentSeparator);
+        match = true;
+      }
+    })
+    if (!match) {
+      actions.push(temp[val] + currentSeparator);
+    }
+  })
   return actions.join('').substring(0, actions.join('').length - 1);
 }
 
@@ -232,13 +226,9 @@ export function tansParams(params) {
 }
 
 // 验证是否为blob格式
-export
-async
-
-function blobValidate(data) {
+export async function blobValidate(data) {
   try {
-    const text = await
-    data.text();
+    const text = await data.text();
     JSON.parse(text);
     return false;
   } catch (error) {

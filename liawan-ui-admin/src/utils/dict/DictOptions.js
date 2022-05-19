@@ -2,12 +2,12 @@ import {mergeRecursive} from "@/utils/ruoyi";
 import dictConverter from './DictConverter'
 
 export const options = {
-    metas: {
-      '*': {
-        /**
-         * 字典请求，方法签名为function(dictMeta: DictMeta): Promise
-         */
-        request: (dictMeta) = > {
+  metas: {
+    '*': {
+      /**
+       * 字典请求，方法签名为function(dictMeta: DictMeta): Promise
+       */
+      request: (dictMeta) => {
         console.log(`load dict ${dictMeta.type}`)
         return Promise.resolve([])
       },
@@ -22,15 +22,11 @@ export const options = {
   /**
    * 默认标签字段
    */
-  DEFAULT_LABEL_FIELDS
-:
-['label', 'name', 'title'],
+  DEFAULT_LABEL_FIELDS: ['label', 'name', 'title'],
   /**
    * 默认值字段
    */
-  DEFAULT_VALUE_FIELDS
-:
-['value', 'id', 'uid', 'key'],
+  DEFAULT_VALUE_FIELDS: ['value', 'id', 'uid', 'key'],
 }
 
 /**
@@ -45,8 +41,7 @@ function responseConverter(response, dictMeta) {
     console.warn(`no dict data of "${dictMeta.type}" found in the response`)
     return []
   }
-  return dicts.map(d = > dictConverter(d, dictMeta)
-)
+  return dicts.map(d => dictConverter(d, dictMeta))
 }
 
 export function mergeOptions(src) {

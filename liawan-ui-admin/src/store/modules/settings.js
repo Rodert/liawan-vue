@@ -15,13 +15,11 @@ const state = {
   dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle
 }
 const mutations = {
-  CHANGE_SETTING: (state, {key, value}) = > {
-  if(state.hasOwnProperty(key)
-)
-{
-  state[key] = value
-}
-}
+  CHANGE_SETTING: (state, {key, value}) => {
+    if (state.hasOwnProperty(key)) {
+      state[key] = value
+    }
+  }
 }
 
 const actions = {

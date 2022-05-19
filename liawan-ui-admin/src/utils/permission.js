@@ -11,10 +11,9 @@ export function checkPermi(value) {
     const permissionDatas = value
     const all_permission = "*:*:*";
 
-    const hasPermission = permissions.some(permission = > {
+    const hasPermission = permissions.some(permission => {
       return all_permission === permission || permissionDatas.includes(permission)
-    }
-  )
+    })
 
     if (!hasPermission) {
       return false
@@ -37,10 +36,9 @@ export function checkRole(value) {
     const permissionRoles = value
     const super_admin = "admin";
 
-    const hasRole = roles.some(role = > {
+    const hasRole = roles.some(role => {
       return super_admin === role || permissionRoles.includes(role)
-    }
-  )
+    })
 
     if (!hasRole) {
       return false

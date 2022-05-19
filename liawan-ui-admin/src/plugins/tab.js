@@ -6,25 +6,21 @@ export default {
   refreshPage(obj) {
     const {path, query, matched} = router.currentRoute;
     if (obj === undefined) {
-      matched.forEach((m) = > {
-        if(m.components && m.components.default && m.components.default.name
-    )
-      {
-        if (!['Layout', 'ParentView'].includes(m.components.default.name)) {
-          obj = {name: m.components.default.name, path: path, query: query};
+      matched.forEach((m) => {
+        if (m.components && m.components.default && m.components.default.name) {
+          if (!['Layout', 'ParentView'].includes(m.components.default.name)) {
+            obj = {name: m.components.default.name, path: path, query: query};
+          }
         }
-      }
-    })
-      ;
+      });
     }
-    return store.dispatch('tagsView/delCachedView', obj).then(() = > {
+    return store.dispatch('tagsView/delCachedView', obj).then(() => {
       const {path, query} = obj
       router.replace({
         path: '/redirect' + path,
         query: query
       })
-    }
-  )
+    })
   },
   // 关闭当前tab页签，打开新页签
   closeOpenPage(obj) {
@@ -36,10 +32,9 @@ export default {
   // 关闭指定tab页签
   closePage(obj) {
     if (obj === undefined) {
-      return store.dispatch('tagsView/delView', router.currentRoute).then(({lastPath}) = > {
+      return store.dispatch('tagsView/delView', router.currentRoute).then(({lastPath}) => {
         return router.push(lastPath || '/');
-    })
-      ;
+      });
     }
     return store.dispatch('tagsView/delView', obj);
   },
