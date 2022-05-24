@@ -69,7 +69,7 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://bj-cdb-mw08tjgs.sql.tencentcdb.com:60042/liawan-vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://bj-cdb-mw08tjgs.sql.tencentcdb.com:60042/liawan-vue-prod?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
         password: 1234qwer
       # 从库数据源
