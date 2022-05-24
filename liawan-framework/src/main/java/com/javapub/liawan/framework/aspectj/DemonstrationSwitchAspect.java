@@ -1,6 +1,7 @@
 package com.javapub.liawan.framework.aspectj;
 
 import com.javapub.liawan.common.annotation.DemonstrationSwitch;
+import com.javapub.liawan.common.config.LiaWanConfig;
 import com.javapub.liawan.common.constant.HttpStatus;
 import com.javapub.liawan.common.core.domain.AjaxResult;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -9,6 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,6 +28,9 @@ public class DemonstrationSwitchAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(DemonstrationSwitchAspect.class);
 
+    @Autowired
+    private LiaWanConfig liaWanConfig;
+
     /**
      * 切点
      */
@@ -42,7 +47,7 @@ public class DemonstrationSwitchAspect {
      */
     @Around(value = "demonstrationPoint(demonstrationSwitch)")
     public AjaxResult doBefore(ProceedingJoinPoint joinPoint, DemonstrationSwitch demonstrationSwitch) {
-        if (demonstrationSwitch.onOff()) {
+        if (demonstrationSwitch.onOff() && liaWanConfig.isDemoEnabled()) {
             return AjaxResult.error(HttpStatus.CONFLICT, "演示环境不支持写操作，\n 跟着教程5分钟搭建本地环境（还提供视频教程哦）。\n https://gitee.com/rodert/liawan-vue");
         }
         try {
