@@ -13,7 +13,7 @@ liawan:
   # 版权年份
   copyrightYear: 2022
   # 实例演示开关
-  demoEnabled: true
+  demoEnabled: false
 
 # 开发环境配置
 server:
