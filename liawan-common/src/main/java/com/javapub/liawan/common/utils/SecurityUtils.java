@@ -4,6 +4,7 @@ import com.javapub.liawan.common.constant.HttpStatus;
 import com.javapub.liawan.common.core.domain.model.LoginUser;
 import com.javapub.liawan.common.exception.ServiceException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -64,7 +65,13 @@ public class SecurityUtils {
 
     /**
      * 获取Authentication
+     * TODO 这里新增接口有时获取不到用户信息，暂时以这种方式处理，原理待研究。
      */
+//    public static Authentication getAuthentication() {
+//        SecurityContext securityContext = SecurityContextHolder.getContext();
+//        SecurityContextHolder.setContext(securityContext);
+//        return SecurityContextHolder.getContext().getAuthentication();
+//    }
     public static Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }

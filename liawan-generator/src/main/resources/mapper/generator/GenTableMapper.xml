@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.javapub.liawan.generator.mapper.GenTableMapper">
 
-    <resultMap type="GenTable" id="GenTableResult">
+    <resultMap type="com.javapub.liawan.generator.domain.GenTable" id="GenTableResult">
         <id property="tableId" column="table_id"/>
         <result property="tableName" column="table_name"/>
         <result property="tableComment" column="table_comment"/>
@@ -77,7 +77,8 @@
         from gen_table
     </sql>
 
-    <select id="selectGenTableList" parameterType="GenTable" resultMap="GenTableResult">
+    <select id="selectGenTableList" parameterType="com.javapub.liawan.generator.domain.GenTable"
+            resultMap="GenTableResult">
         <include refid="selectGenTableVo"/>
         <where>
             <if test="tableName != null and tableName != ''">

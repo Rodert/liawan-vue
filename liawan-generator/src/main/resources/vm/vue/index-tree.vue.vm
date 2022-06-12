@@ -1,7 +1,6 @@
 <template>
     <div class="app-container">
-        <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch"
-                 label-width="68px">
+        <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
             #foreach($column in $columns)
                 #if($column.query)
                     #set($dictType=$column.dictType)
@@ -35,7 +34,7 @@
                     #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
                         <el-form-item label="${comment}" prop="${column.javaField}">
                             <el-select v-model="queryParams.${column.javaField}" placeholder="请选择${comment}" clearable>
-                                <el-option label="请选择字典生成" value=""/>
+                                <el-option label="请选择字典生成" value="" />
                             </el-select>
                         </el-form-item>
                     #elseif($column.htmlType == "datetime" && $column.queryType != "BETWEEN")
@@ -77,8 +76,7 @@
                         size="mini"
                         @click="handleAdd"
                         v-hasPermi="['${moduleName}:${businessName}:add']"
-                >新增
-                </el-button>
+                >新增</el-button>
             </el-col>
             <el-col :span="1.5">
                 <el-button
@@ -87,8 +85,7 @@
                         icon="el-icon-sort"
                         size="mini"
                         @click="toggleExpandAll"
-                >展开/折叠
-                </el-button>
+                >展开/折叠</el-button>
             </el-col>
             <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
         </el-row>
@@ -126,8 +123,7 @@
                     <el-table-column label="${comment}" align="center" prop="${javaField}">
                         <template slot-scope="scope">
                             #if($column.htmlType == "checkbox")
-                                <dict-tag :options="dict.type.${column.dictType}"
-                                          :value="scope.row.${javaField} ? scope.row.${javaField}.split(',') : []"/>
+                                <dict-tag :options="dict.type.${column.dictType}" :value="scope.row.${javaField} ? scope.row.${javaField}.split(',') : []"/>
                             #else
                                 <dict-tag :options="dict.type.${column.dictType}" :value="scope.row.${javaField}"/>
                             #end
@@ -135,9 +131,9 @@
                     </el-table-column>
                 #elseif($column.list && "" != $javaField)
                     #if(${foreach.index} == 1)
-                        <el-table-column label="${comment}" prop="${javaField}"/>
+                        <el-table-column label="${comment}" prop="${javaField}" />
                     #else
-                        <el-table-column label="${comment}" align="center" prop="${javaField}"/>
+                        <el-table-column label="${comment}" align="center" prop="${javaField}" />
                     #end
                 #end
             #end
@@ -149,24 +145,21 @@
                             icon="el-icon-edit"
                             @click="handleUpdate(scope.row)"
                             v-hasPermi="['${moduleName}:${businessName}:edit']"
-                    >修改
-                    </el-button>
+                    >修改</el-button>
                     <el-button
                             size="mini"
                             type="text"
                             icon="el-icon-plus"
                             @click="handleAdd(scope.row)"
                             v-hasPermi="['${moduleName}:${businessName}:add']"
-                    >新增
-                    </el-button>
+                    >新增</el-button>
                     <el-button
                             size="mini"
                             type="text"
                             icon="el-icon-delete"
                             @click="handleDelete(scope.row)"
                             v-hasPermi="['${moduleName}:${businessName}:remove']"
-                    >删除
-                    </el-button>
+                    >删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -187,12 +180,11 @@
                             #set($dictType=$column.dictType)
                             #if("" != $treeParentCode && $column.javaField == $treeParentCode)
                                 <el-form-item label="${comment}" prop="${treeParentCode}">
-                                    <treeselect v-model="form.${treeParentCode}" :options="${businessName}Options"
-                                                :normalizer="normalizer" placeholder="请选择${comment}"/>
+                                    <treeselect v-model="form.${treeParentCode}" :options="${businessName}Options" :normalizer="normalizer" placeholder="请选择${comment}" />
                                 </el-form-item>
                             #elseif($column.htmlType == "input")
                                 <el-form-item label="${comment}" prop="${field}">
-                                    <el-input v-model="form.${field}" placeholder="请输入${comment}"/>
+                                    <el-input v-model="form.${field}" placeholder="请输入${comment}" />
                                 </el-form-item>
                             #elseif($column.htmlType == "imageUpload")
                                 <el-form-item label="${comment}">
@@ -213,8 +205,7 @@
                                                 v-for="dict in dict.type.${dictType}"
                                                 :key="dict.value"
                                                 :label="dict.label"
-                                                #if($column.javaType == "Integer" || $column.javaType ==
-                                                    "Long"):value="parseInt(dict.value)"#else:value="dict.value"#end
+                                                #if($column.javaType == "Integer" || $column.javaType == "Long"):value="parseInt(dict.value)"#else:value="dict.value"#end
 
                                         ></el-option>
                                     </el-select>
@@ -222,7 +213,7 @@
                             #elseif($column.htmlType == "select" && $dictType)
                                 <el-form-item label="${comment}" prop="${field}">
                                     <el-select v-model="form.${field}" placeholder="请选择${comment}">
-                                        <el-option label="请选择字典生成" value=""/>
+                                        <el-option label="请选择字典生成" value="" />
                                     </el-select>
                                 </el-form-item>
                             #elseif($column.htmlType == "checkbox" && "" != $dictType)
@@ -248,11 +239,9 @@
                                         <el-radio
                                                 v-for="dict in dict.type.${dictType}"
                                                 :key="dict.value"
-                                                #if($column.javaType == "Integer" || $column.javaType ==
-                                                    "Long"):label="parseInt(dict.value)"#else:label="dict.value"#end
+                                                #if($column.javaType == "Integer" || $column.javaType == "Long"):label="parseInt(dict.value)"#else:label="dict.value"#end
 
-                                        >{{dict.label}}
-                                        </el-radio>
+                                        >{{dict.label}}</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             #elseif($column.htmlType == "radio" && $dictType)
@@ -272,7 +261,7 @@
                                 </el-form-item>
                             #elseif($column.htmlType == "textarea")
                                 <el-form-item label="${comment}" prop="${field}">
-                                    <el-input v-model="form.${field}" type="textarea" placeholder="请输入内容"/>
+                                    <el-input v-model="form.${field}" type="textarea" placeholder="请输入内容" />
                                 </el-form-item>
                             #end
                         #end
@@ -288,7 +277,7 @@
 </template>
 
 <script>
-    import {get${BusinessName}, list${BusinessName}} from "@/api/";
+    import { list${BusinessName}, get${BusinessName}, del${BusinessName}, add${BusinessName}, update${BusinessName} } from "@/api/${moduleName}/${businessName}";
     import Treeselect from "@riophae/vue-treeselect";
     import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
@@ -334,9 +323,7 @@
             #end
         },
             // 表单参数
-            form: {
-            }
-        ,
+            form: {},
             // 表单校验
             rules: {
                 #foreach ($column in $columns)
@@ -348,15 +335,12 @@
                             #set($comment=$column.columnComment)
                         #end
                         $column.javaField: [
-                        {
-                            required: true, message: "$comment不能为空", trigger: #if($column.htmlType ==
-                            "select")"change"#else"blur"#end }
+                        { required: true, message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"#else"blur"#end }
                     ]#if($foreach.count != $columns.size()),#end
                     #end
                 #end
             }
-        }
-            ;
+        };
         },
         created() {
             this.getList();
@@ -380,11 +364,10 @@
                         }
                     #end
                 #end
-                list${BusinessName}(this.queryParams).then(response = > {
+                list${BusinessName}(this.queryParams).then(response => {
                     this.${businessName}List = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-                this.loading = false;
-            })
-                ;
+                    this.loading = false;
+                });
             },
             /** 转换${functionName}数据结构 */
             normalizer(node) {
@@ -399,19 +382,12 @@
             },
             /** 查询${functionName}下拉树结构 */
             getTreeselect() {
-                list${BusinessName}().then(response = > {
+                list${BusinessName}().then(response => {
                     this.${businessName}Options = [];
-                const data = {${treeCode}:
-                0, ${treeName}:
-                '顶级节点', children
-            :
-                []
-            }
-                ;
-                data.children = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-                this.${businessName}Options.push(data);
-            })
-                ;
+                    const data = { ${treeCode}: 0, ${treeName}: '顶级节点', children: [] };
+                    data.children = this.handleTree(response.data, "${treeCode}", "${treeParentCode}");
+                    this.${businessName}Options.push(data);
+                });
             },
             // 取消按钮
             cancel() {
@@ -423,8 +399,7 @@
                 this.form = {
                 #foreach ($column in $columns)
                     #if($column.htmlType == "radio")
-                        $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
-                    #else"0"#end#if($foreach.count != $columns.size()),#end
+                        $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0#else"0"#end#if($foreach.count != $columns.size()),#end
 
                     #elseif($column.htmlType == "checkbox")
                         $column.javaField: []#if($foreach.count != $columns.size()),#end
@@ -432,8 +407,7 @@
                         $column.javaField: null#if($foreach.count != $columns.size()),#end
                     #end
                 #end
-            }
-                ;
+            };
                 this.resetForm("form");
             },
             /** 搜索按钮操作 */
@@ -467,10 +441,9 @@
             toggleExpandAll() {
                 this.refreshTable = false;
                 this.isExpandAll = !this.isExpandAll;
-                this.$nextTick(() = > {
+                this.$nextTick(() => {
                     this.refreshTable = true;
-            })
-                ;
+                });
             },
             /** 修改按钮操作 */
             handleUpdate(row) {
@@ -479,114 +452,50 @@
                 if (row != null) {
                     this.form.${treeParentCode} = row.${treeCode};
                 }
-                get${BusinessName}(row.${pkColumn.javaField}).then(response = > {
+                get${BusinessName}(row.${pkColumn.javaField}).then(response => {
                     this.form = response.data;
-                #foreach ($column in $columns)
-                    #if($column.htmlType == "checkbox")
-                        this.form.$column.javaField = this.form.${column.javaField}.split(",");
+                    #foreach ($column in $columns)
+                        #if($column.htmlType == "checkbox")
+                            this.form.$column.javaField = this.form.${column.javaField}.split(",");
+                        #end
                     #end
-                #end
-                this.open = true;
-                this.title = "修改${functionName}";
-            })
-                ;
+                    this.open = true;
+                    this.title = "修改${functionName}";
+                });
             },
             /** 提交按钮 */
             submitForm() {
-                this.
-            #
-                [[$]]
-            #
-                refs["form"].validate(valid = > {
-                    if(valid) {
-                        #foreach($column in $columns)
-                            #if($column.htmlType == "checkbox")
-                                this.form.$column.javaField = this.form.$
-                                {
-                                    column.javaField
-                                }
-                            .
-                                join(",");
-                            #end
+                this.#[[$]]#refs["form"].validate(valid => {
+                    if (valid) {
+                        #foreach ($column in $columns)
+                        #if($column.htmlType == "checkbox")
+                        this.form.$column.javaField = this.form.${column.javaField}.join(",");
                         #end
-                        if (this.form.${
-                            pkColumn.javaField
-                        }
-                    !=
-                        null
-                    )
-                        {
-                            update$
-                            {
-                                BusinessName
-                            }
-                            (this.form).then(response = > {
-                                this.
-                        #
-                            [[$modal]]
-                        #.
-                            msgSuccess("修改成功");
-                            this.open = false;
-                            this.getList();
-                        })
-                            ;
-                        }
-                    else
-                        {
-                            add$
-                            {
-                                BusinessName
-                            }
-                            (this.form).then(response = > {
-                                this.
-                        #
-                            [[$modal]]
-                        #.
-                            msgSuccess("新增成功");
-                            this.open = false;
-                            this.getList();
-                        })
-                            ;
+                        #end
+                        if (this.form.${pkColumn.javaField} != null) {
+                            update${BusinessName}(this.form).then(response => {
+                                this.#[[$modal]]#.msgSuccess("修改成功");
+                                this.open = false;
+                                this.getList();
+                            });
+                        } else {
+                            add${BusinessName}(this.form).then(response => {
+                                this.#[[$modal]]#.msgSuccess("新增成功");
+                                this.open = false;
+                                this.getList();
+                            });
                         }
                     }
-                }
-            )
-                ;
+                });
             },
             /** 删除按钮操作 */
             handleDelete(row) {
-                this.
-            #
-                [[$modal]]
-            #.
-                confirm('是否确认删除${functionName}编号为"' + row.$
-                {
-                    pkColumn.javaField
-                }
-                +'"的数据项？'
-            ).
-                then(function () {
-                    return del$
-                    {
-                        BusinessName
-                    }
-                    (row.$
-                    {
-                        pkColumn.javaField
-                    }
-                )
-                    ;
-                }).then(() = > {
+                this.#[[$modal]]#.confirm('是否确认删除${functionName}编号为"' + row.${pkColumn.javaField} + '"的数据项？').then(function() {
+                    return del${BusinessName}(row.${pkColumn.javaField});
+                }).then(() => {
                     this.getList();
-                this.
-            #
-                [[$modal]]
-            #.
-                msgSuccess("删除成功");
-            }).
-                catch(() = > {}
-            )
-                ;
+                    this.#[[$modal]]#.msgSuccess("删除成功");
+                }).catch(() => {});
             }
         }
     };

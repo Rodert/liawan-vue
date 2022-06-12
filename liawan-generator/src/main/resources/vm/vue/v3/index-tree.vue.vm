@@ -34,7 +34,7 @@
                     #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
                         <el-form-item label="${comment}" prop="${column.javaField}">
                             <el-select v-model="queryParams.${column.javaField}" placeholder="请选择${comment}" clearable>
-                                <el-option label="请选择字典生成" value=""/>
+                                <el-option label="请选择字典生成" value="" />
                             </el-select>
                         </el-form-item>
                     #elseif($column.htmlType == "datetime" && $column.queryType != "BETWEEN")
@@ -74,8 +74,7 @@
                         icon="Plus"
                         @click="handleAdd"
                         v-hasPermi="['${moduleName}:${businessName}:add']"
-                >新增
-                </el-button>
+                >新增</el-button>
             </el-col>
             <el-col :span="1.5">
                 <el-button
@@ -83,8 +82,7 @@
                         plain
                         icon="Sort"
                         @click="toggleExpandAll"
-                >展开/折叠
-                </el-button>
+                >展开/折叠</el-button>
             </el-col>
             <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
         </el-row>
@@ -122,8 +120,7 @@
                     <el-table-column label="${comment}" align="center" prop="${javaField}">
                         <template #default="scope">
                             #if($column.htmlType == "checkbox")
-                                <dict-tag :options="${column.dictType}"
-                                          :value="scope.row.${javaField} ? scope.row.${javaField}.split(',') : []"/>
+                                <dict-tag :options="${column.dictType}" :value="scope.row.${javaField} ? scope.row.${javaField}.split(',') : []"/>
                             #else
                                 <dict-tag :options="${column.dictType}" :value="scope.row.${javaField}"/>
                             #end
@@ -131,9 +128,9 @@
                     </el-table-column>
                 #elseif($column.list && "" != $javaField)
                     #if(${foreach.index} == 1)
-                        <el-table-column label="${comment}" prop="${javaField}"/>
+                        <el-table-column label="${comment}" prop="${javaField}" />
                     #else
-                        <el-table-column label="${comment}" align="center" prop="${javaField}"/>
+                        <el-table-column label="${comment}" align="center" prop="${javaField}" />
                     #end
                 #end
             #end
@@ -144,22 +141,19 @@
                             icon="Edit"
                             @click="handleUpdate(scope.row)"
                             v-hasPermi="['${moduleName}:${businessName}:edit']"
-                    >修改
-                    </el-button>
+                    >修改</el-button>
                     <el-button
                             type="text"
                             icon="Plus"
                             @click="handleAdd(scope.row)"
                             v-hasPermi="['${moduleName}:${businessName}:add']"
-                    >新增
-                    </el-button>
+                    >新增</el-button>
                     <el-button
                             type="text"
                             icon="Delete"
                             @click="handleDelete(scope.row)"
                             v-hasPermi="['${moduleName}:${businessName}:remove']"
-                    >删除
-                    </el-button>
+                    >删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -180,16 +174,18 @@
                             #set($dictType=$column.dictType)
                             #if("" != $treeParentCode && $column.javaField == $treeParentCode)
                                 <el-form-item label="${comment}" prop="${treeParentCode}">
-                                    <tree-select
-                                            v-model:value="form.${treeParentCode}"
-                                            :options="${businessName}Options"
-                                            :objMap="{ value: '${treeCode}', label: '${treeName}', children: 'children' }"
+                                    <el-tree-select
+                                            v-model="form.${treeParentCode}"
+                                            :data="${businessName}Options"
+                                            :props="{ value: '${treeCode}', label: '${treeName}', children: 'children' }"
+                                            value-key="${treeCode}"
                                             placeholder="请选择${comment}"
+                                            check-strictly
                                     />
                                 </el-form-item>
                             #elseif($column.htmlType == "input")
                                 <el-form-item label="${comment}" prop="${field}">
-                                    <el-input v-model="form.${field}" placeholder="请输入${comment}"/>
+                                    <el-input v-model="form.${field}" placeholder="请输入${comment}" />
                                 </el-form-item>
                             #elseif($column.htmlType == "imageUpload")
                                 <el-form-item label="${comment}">
@@ -210,8 +206,7 @@
                                                 v-for="dict in ${dictType}"
                                                 :key="dict.value"
                                                 :label="dict.label"
-                                                #if($column.javaType == "Integer" || $column.javaType ==
-                                                    "Long"):value="parseInt(dict.value)"#else:value="dict.value"#end
+                                                #if($column.javaType == "Integer" || $column.javaType == "Long"):value="parseInt(dict.value)"#else:value="dict.value"#end
 
                                         ></el-option>
                                     </el-select>
@@ -219,7 +214,7 @@
                             #elseif($column.htmlType == "select" && $dictType)
                                 <el-form-item label="${comment}" prop="${field}">
                                     <el-select v-model="form.${field}" placeholder="请选择${comment}">
-                                        <el-option label="请选择字典生成" value=""/>
+                                        <el-option label="请选择字典生成" value="" />
                                     </el-select>
                                 </el-form-item>
                             #elseif($column.htmlType == "checkbox" && "" != $dictType)
@@ -245,11 +240,9 @@
                                         <el-radio
                                                 v-for="dict in ${dictType}"
                                                 :key="dict.value"
-                                                #if($column.javaType == "Integer" || $column.javaType ==
-                                                    "Long"):label="parseInt(dict.value)"#else:label="dict.value"#end
+                                                #if($column.javaType == "Integer" || $column.javaType == "Long"):label="parseInt(dict.value)"#else:label="dict.value"#end
 
-                                        >{{dict.label}}
-                                        </el-radio>
+                                        >{{dict.label}}</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             #elseif($column.htmlType == "radio" && $dictType)
@@ -269,7 +262,7 @@
                                 </el-form-item>
                             #elseif($column.htmlType == "textarea")
                                 <el-form-item label="${comment}" prop="${field}">
-                                    <el-input v-model="form.${field}" type="textarea" placeholder="请输入内容"/>
+                                    <el-input v-model="form.${field}" type="textarea" placeholder="请输入内容" />
                                 </el-form-item>
                             #end
                         #end
@@ -287,9 +280,9 @@
 </template>
 
 <script setup name="${BusinessName}">
-    import {get${BusinessName}, list${BusinessName}} from "@/api/";
+    import { list${BusinessName}, get${BusinessName}, del${BusinessName}, add${BusinessName}, update${BusinessName} } from "@/api/${moduleName}/${businessName}";
 
-    const {proxy} = getCurrentInstance();
+    const { proxy } = getCurrentInstance();
         #if(${dicts} != '')
             #set($dictsNoSymbol=$dicts.replace("'", ""))
         const { ${dictsNoSymbol} } = proxy.useDict(${dicts});
@@ -329,18 +322,14 @@
                     #set($comment=$column.columnComment)
                 #end
                 $column.javaField: [
-                {
-                    required: true,
-                    message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"
-                    #else"blur"#end }
+                { required: true, message: "$comment不能为空", trigger: #if($column.htmlType == "select")"change"#else"blur"#end }
             ]#if($foreach.count != $columns.size()),#end
             #end
         #end
     }
-    })
-    ;
+    });
 
-    const {queryParams, form, rules} = toRefs(data);
+    const { queryParams, form, rules } = toRefs(data);
 
     /** 查询${functionName}列表 */
     function getList() {
@@ -360,31 +349,20 @@
                 }
             #end
         #end
-        list${BusinessName}(queryParams.value).then(response = > {
+        list${BusinessName}(queryParams.value).then(response => {
                 ${businessName}List.value = proxy.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-        loading.value = false;
-    })
-        ;
+            loading.value = false;
+        });
     }
 
     /** 查询${functionName}下拉树结构 */
-    async
-
     function getTreeselect() {
-        await
-        list${BusinessName}().then(response = > {
+        list${BusinessName}().then(response => {
                 ${businessName}Options.value = [];
-        const data = {${treeCode}:
-        0, ${treeName}:
-        '顶级节点', children
-    :
-        []
-    }
-        ;
-        data.children = proxy.handleTree(response.data, "${treeCode}", "${treeParentCode}");
-            ${businessName}Options.value.push(data);
-    })
-        ;
+            const data = { ${treeCode}: 0, ${treeName}: '顶级节点', children: [] };
+            data.children = proxy.handleTree(response.data, "${treeCode}", "${treeParentCode}");
+                ${businessName}Options.value.push(data);
+        });
     }
 
     // 取消按钮
@@ -398,8 +376,7 @@
         form.value = {
         #foreach ($column in $columns)
             #if($column.htmlType == "radio")
-                $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0
-            #else"0"#end#if($foreach.count != $columns.size()),#end
+                $column.javaField: #if($column.javaType == "Integer" || $column.javaType == "Long")0#else"0"#end#if($foreach.count != $columns.size()),#end
 
             #elseif($column.htmlType == "checkbox")
                 $column.javaField: []#if($foreach.count != $columns.size()),#end
@@ -407,8 +384,7 @@
                 $column.javaField: null#if($foreach.count != $columns.size()),#end
             #end
         #end
-    }
-        ;
+    };
         proxy.resetForm("${businessName}Ref");
     }
 
@@ -430,11 +406,8 @@
     }
 
     /** 新增按钮操作 */
-    async
-
     function handleAdd(row) {
         reset();
-        await
         getTreeselect();
         if (row != null && row.${treeCode}) {
             form.value.${treeParentCode} = row.${treeCode};
@@ -449,132 +422,64 @@
     function toggleExpandAll() {
         refreshTable.value = false;
         isExpandAll.value = !isExpandAll.value;
-        nextTick(() = > {
+        nextTick(() => {
             refreshTable.value = true;
-    })
-        ;
+        });
     }
 
     /** 修改按钮操作 */
-    async
-
-    function handleUpdate(row) {
+    async function handleUpdate(row) {
         reset();
-        await
-        getTreeselect();
+        await getTreeselect();
         if (row != null) {
             form.value.${treeParentCode} = row.${treeCode};
         }
-        get${BusinessName}(row.${pkColumn.javaField}).then(response = > {
+        get${BusinessName}(row.${pkColumn.javaField}).then(response => {
             form.value = response.data;
-        #foreach ($column in $columns)
-            #if($column.htmlType == "checkbox")
-                form.value.$column.javaField = form.value.${column.javaField}.split(",");
+            #foreach ($column in $columns)
+                #if($column.htmlType == "checkbox")
+                    form.value.$column.javaField = form.value.${column.javaField}.split(",");
+                #end
             #end
-        #end
-        open.value = true;
-        title.value = "修改${functionName}";
-    })
-        ;
+            open.value = true;
+            title.value = "修改${functionName}";
+        });
     }
 
     /** 提交按钮 */
     function submitForm() {
-        proxy.
-    #
-        [[$]]
-    #
-        refs["${businessName}Ref"].validate(valid = > {
-            if(valid) {
-                #foreach($column in $columns)
-                    #if($column.htmlType == "checkbox")
-                        form.value.$column.javaField = form.value.$
-                        {
-                            column.javaField
-                        }
-                    .
-                        join(",");
-                    #end
+        proxy.#[[$]]#refs["${businessName}Ref"].validate(valid => {
+            if (valid) {
+                #foreach ($column in $columns)
+                #if($column.htmlType == "checkbox")
+                form.value.$column.javaField = form.value.${column.javaField}.join(",");
                 #end
-                if (form.value.${
-                    pkColumn.javaField
-                }
-            !=
-                null
-            )
-                {
-                    update$
-                    {
-                        BusinessName
-                    }
-                    (form.value).then(response = > {
-                        proxy.
-                #
-                    [[$modal]]
-                #.
-                    msgSuccess("修改成功");
-                    open.value = false;
-                    getList();
-                })
-                    ;
-                }
-            else
-                {
-                    add$
-                    {
-                        BusinessName
-                    }
-                    (form.value).then(response = > {
-                        proxy.
-                #
-                    [[$modal]]
-                #.
-                    msgSuccess("新增成功");
-                    open.value = false;
-                    getList();
-                })
-                    ;
+                #end
+                if (form.value.${pkColumn.javaField} != null) {
+                    update${BusinessName}(form.value).then(response => {
+                        proxy.#[[$modal]]#.msgSuccess("修改成功");
+                        open.value = false;
+                        getList();
+                    });
+                } else {
+                    add${BusinessName}(form.value).then(response => {
+                        proxy.#[[$modal]]#.msgSuccess("新增成功");
+                        open.value = false;
+                        getList();
+                    });
                 }
             }
-        }
-    )
-        ;
+        });
     }
 
     /** 删除按钮操作 */
     function handleDelete(row) {
-        proxy.
-    #
-        [[$modal]]
-    #.
-        confirm('是否确认删除${functionName}编号为"' + row.$
-        {
-            pkColumn.javaField
-        }
-        +'"的数据项？'
-    ).
-        then(function () {
-            return del$
-            {
-                BusinessName
-            }
-            (row.$
-            {
-                pkColumn.javaField
-            }
-        )
-            ;
-        }).then(() = > {
+        proxy.#[[$modal]]#.confirm('是否确认删除${functionName}编号为"' + row.${pkColumn.javaField} + '"的数据项？').then(function() {
+            return del${BusinessName}(row.${pkColumn.javaField});
+        }).then(() => {
             getList();
-        proxy.
-    #
-        [[$modal]]
-    #.
-        msgSuccess("删除成功");
-    }).
-        catch(() = > {}
-    )
-        ;
+            proxy.#[[$modal]]#.msgSuccess("删除成功");
+        }).catch(() => {});
     }
 
     getList();

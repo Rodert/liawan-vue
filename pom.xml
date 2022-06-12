@@ -8,12 +8,11 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <name>liawan-vue</name>
-    <url>http://javapub.net.cn</url>
+    <url>http://liawan.javapub.net.cn</url>
     <description>俩万管理系统</description>
 
     <properties>
         <liawan.version>0.0.1-SNAPSHOT</liawan.version>
-        <!--        <liawan.version>3.8.2</liawan.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -33,6 +32,7 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
         <jwt.version>0.9.1</jwt.version>
+        <flowable.version>6.7.2</flowable.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -199,6 +199,12 @@
                 <version>${liawan.version}</version>
             </dependency>
 
+            <!--审批流-->
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

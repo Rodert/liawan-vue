@@ -182,6 +182,8 @@ mvn clean package -DskipTests
 - [ ] 接入商城
 - [ ] 系统监控
 - [ ] docker构建
+- [ ] flowable请假审核
+
 
 
 
@@ -195,3 +197,5 @@ mvn clean package -DskipTests
 
 - 2022.05.15 初始化项目、并完成部署
 - 2022.05.19 演示环境新增写操作功能
+- 2022.06.12 请假审核flowable：请假审核、代办处理
+

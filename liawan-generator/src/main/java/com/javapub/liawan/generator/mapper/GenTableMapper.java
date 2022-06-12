@@ -1,6 +1,7 @@
 package com.javapub.liawan.generator.mapper;
 
 import com.javapub.liawan.generator.domain.GenTable;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

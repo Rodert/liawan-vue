@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javapub.liawan.system.mapper.LeaveApplyMapper">
+
+    <resultMap type="LeaveApply" id="LeaveApplyResult">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="leaveType" column="leave_type"/>
+        <result property="reason" column="reason"/>
+        <result property="applyTime" column="apply_time"/>
+        <result property="realityStartTime" column="reality_start_time"/>
+        <result property="realityEndTime" column="reality_end_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectLeaveApplyVo">
+        select id,
+               user_id,
+               start_time,
+               end_time,
+               leave_type,
+               reason,
+               apply_time,
+               reality_start_time,
+               reality_end_time,
+               create_by,
+               create_time,
+               update_by,
+               update_time
+        from leave_apply
+    </sql>
+
+    <select id="selectLeaveApplyList" parameterType="LeaveApply" resultMap="LeaveApplyResult">
+        <include refid="selectLeaveApplyVo"/>
+        <where>
+            <if test="userId != null  and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="startTime != null ">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null ">
+                and end_time = #{endTime}
+            </if>
+            <if test="leaveType != null  and leaveType != ''">
+                and leave_type = #{leaveType}
+            </if>
+            <if test="reason != null  and reason != ''">
+                and reason = #{reason}
+            </if>
+            <if test="applyTime != null ">
+                and apply_time = #{applyTime}
+            </if>
+            <if test="realityStartTime != null ">
+                and reality_start_time = #{realityStartTime}
+            </if>
+            <if test="realityEndTime != null ">
+                and reality_end_time = #{realityEndTime}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <select id="selectLeaveApplyById" parameterType="Long"
+            resultMap="LeaveApplyResult">
+        <include refid="selectLeaveApplyVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertLeaveApply" parameterType="LeaveApply" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into leave_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,
+            </if>
+            <if test="startTime != null">start_time,
+            </if>
+            <if test="endTime != null">end_time,
+            </if>
+            <if test="leaveType != null">leave_type,
+            </if>
+            <if test="reason != null">reason,
+            </if>
+            <if test="applyTime != null">apply_time,
+            </if>
+            <if test="realityStartTime != null">reality_start_time,
+            </if>
+            <if test="realityEndTime != null">reality_end_time,
+            </if>
+            <if test="createBy != null">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},
+            </if>
+            <if test="startTime != null">#{startTime},
+            </if>
+            <if test="endTime != null">#{endTime},
+            </if>
+            <if test="leaveType != null">#{leaveType},
+            </if>
+            <if test="reason != null">#{reason},
+            </if>
+            <if test="applyTime != null">#{applyTime},
+            </if>
+            <if test="realityStartTime != null">#{realityStartTime},
+            </if>
+            <if test="realityEndTime != null">#{realityEndTime},
+            </if>
+            <if test="createBy != null">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateLeaveApply" parameterType="LeaveApply">
+        update leave_apply
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id =
+                #{userId},
+            </if>
+            <if test="startTime != null">start_time =
+                #{startTime},
+            </if>
+            <if test="endTime != null">end_time =
+                #{endTime},
+            </if>
+            <if test="leaveType != null">leave_type =
+                #{leaveType},
+            </if>
+            <if test="reason != null">reason =
+                #{reason},
+            </if>
+            <if test="applyTime != null">apply_time =
+                #{applyTime},
+            </if>
+            <if test="realityStartTime != null">reality_start_time =
+                #{realityStartTime},
+            </if>
+            <if test="realityEndTime != null">reality_end_time =
+                #{realityEndTime},
+            </if>
+            <if test="createBy != null">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLeaveApplyById" parameterType="Long">
+        delete
+        from leave_apply
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteLeaveApplyByIds" parameterType="String">
+        delete from leave_apply where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

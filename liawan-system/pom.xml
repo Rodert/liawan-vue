@@ -21,6 +21,12 @@
             <artifactId>liawan-common</artifactId>
         </dependency>
 
+        <!--审批流-->
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
