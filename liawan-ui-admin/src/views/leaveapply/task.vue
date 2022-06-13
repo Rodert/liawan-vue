@@ -64,7 +64,7 @@
                 @pagination="getList"
         />
 
-        <!-- 添加或修改请假对话框 -->
+        <!-- 部门领导审批对话框对话框 -->
         <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
             <el-form ref="form" :model="form" :rules="rules" label-width="80px">
                                 <el-form-item label="任务id：" prop="taskId">
@@ -97,24 +97,130 @@
                                 <el-form-item label="原因：" prop="reason">
                                     <el-input v-model="form.reason" placeholder="请输入原因" :disabled="true"/>
                                 </el-form-item>
+                                <el-form-item label="人事：" prop="hr">
+                                    <el-select v-model="form.hr" placeholder="人事">
+                                        <el-option v-for="item in userList" :key="item.userName" :label="item.userName" :value="item.userName"/>
+                                    </el-select>
+                                </el-form-item>
                                 <el-form-item label="审批结果：">
-                                    <el-radio-group v-model="radio">
-                                        <el-radio :label="1">同意</el-radio>
-                                        <el-radio :label="2">拒绝</el-radio>
+                                    <el-radio-group v-model="form.deptleaderapprove">
+                                        <el-radio :label="true">同意</el-radio>
+                                        <el-radio :label="false">拒绝</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="submitForm">确 定</el-button>
+                <el-button type="primary" @click="submitForm2">确 定</el-button>
                 <!-- <el-button @click="cancel">取 消</el-button> -->
+            </div>
+        </el-dialog>
+
+        <!-- hr审批对话框 -->
+        <el-dialog :title="title" :visible.sync="openHr" width="500px" append-to-body>
+            <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+                                <el-form-item label="任务id：" prop="taskId">
+                                    <el-input v-model="form.taskId" placeholder="任务id" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="请假人：" prop="userId">
+                                    <el-input v-model="form.userId" placeholder="请假人" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="类型：" prop="leaveType">
+                                    <el-input v-model="form.leaveType" placeholder="类型" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="起始时间：" prop="startTime">
+                                    <el-date-picker clearable
+                                                    v-model="form.startTime"
+                                                    type="date"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="请选择起始时间"
+                                                    :disabled="true">
+                                    </el-date-picker>
+                                </el-form-item>
+                                <el-form-item label="结束时间：" prop="endTime">
+                                    <el-date-picker clearable
+                                                    v-model="form.endTime"
+                                                    type="date"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="请选择结束时间"
+                                                    :disabled="true">
+                                    </el-date-picker>
+                                </el-form-item>
+                                <el-form-item label="原因：" prop="reason">
+                                    <el-input v-model="form.reason" placeholder="请输入原因" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="审批结果：">
+                                    <el-radio-group v-model="form.hrapprove">
+                                        <el-radio :label="true">同意</el-radio>
+                                        <el-radio :label="false">拒绝</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="submitForm2">确 定</el-button>
+                <!-- <el-button @click="cancel">取 消</el-button> -->
+            </div>
+        </el-dialog>
+
+        <!-- 销假对话框 -->
+        <el-dialog :title="title" :visible.sync="openEnd" width="500px" append-to-body>
+            <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+                                <el-form-item label="任务id：" prop="taskId">
+                                    <el-input v-model="form.taskId" placeholder="任务id" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="请假人：" prop="userId">
+                                    <el-input v-model="form.userId" placeholder="请假人" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="类型：" prop="leaveType">
+                                    <el-input v-model="form.leaveType" placeholder="类型" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="起始时间：" prop="startTime">
+                                    <el-date-picker clearable
+                                                    v-model="form.startTime"
+                                                    type="date"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="请选择起始时间"
+                                                    :disabled="true">
+                                    </el-date-picker>
+                                </el-form-item>
+                                <el-form-item label="结束时间：" prop="endTime">
+                                    <el-date-picker clearable
+                                                    v-model="form.endTime"
+                                                    type="date"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="请选择结束时间"
+                                                    :disabled="true">
+                                    </el-date-picker>
+                                </el-form-item>
+                                <el-form-item label="原因：" prop="reason">
+                                    <el-input v-model="form.reason" placeholder="请输入原因" :disabled="true"/>
+                                </el-form-item>
+                                <el-form-item label="实际开始时间：" prop="realityStartTime">
+                                    <el-date-picker clearable
+                                                    v-model="form.realityStartTime"
+                                                    type="date"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="请选择实际开始时间">
+                                    </el-date-picker>
+                                </el-form-item>
+                                <el-form-item label="实际结束时间：" prop="realityEndTime">
+                                    <el-date-picker clearable
+                                                    v-model="form.realityEndTime"
+                                                    type="date"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="请选择实际结束时间">
+                                    </el-date-picker>
+                                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="submitApply">提 交</el-button>
             </div>
         </el-dialog>
     </div>
 </template>
 
 <script>
-    import { getUserProfile } from "@/api/system/user";
-    import { listApply, alllist, getApply, delApply, addApply, updateApply, getApplyByDeptleadercheck } from "@/api/leaveapply/task";
+    import { getUserProfile, listUser } from "@/api/system/user";
+    import { listApply, alllist, getApply, delApply, addApply, updateApply, getApplyByDeptleadercheck, disTask } from "@/api/leaveapply/task";
 
     export default {
         name: "Task",
@@ -129,7 +235,6 @@
                 taskId: '',
                 taskIds: [],
                 leaveType: '',
-                radio: 1,
                 // 非单个禁用
                 single: true,
                 // 非多个禁用
@@ -146,18 +251,10 @@
                 title: "",
                 // 是否显示弹出层
                 open: false,
+                openHr: false,
+                openEnd: false,
                 // 查询参数
                 queryParams: {
-                    // pageNum: 1,
-                    // pageSize: 10,
-                    // userId: null,
-                    // startTime: null,
-                    // endTime: null,
-                    // leaveType: null,
-                    // reason: null,
-                    // applyTime: null,
-                    // realityStartTime: null,
-                    // realityEndTime: null,
                     pageNum: 1,
                     pageSize: 10,
                     isAsc: null,
@@ -170,6 +267,8 @@
                 rules: {
                 },
                 userName: '',
+                //全部用户数据
+                userList: null,
             };
         },
         created() {
@@ -193,15 +292,17 @@
             // 表单重置
             reset() {
                 this.form = {
-                        leaveApply: undefined,
-                        startTime: undefined,
-                        endTime: undefined,
-                        taskId: undefined,
-                        sysUsers: undefined,
-                        leaveType: undefined,
-                        reason: undefined,
-                        userId: undefined,
-            };
+                        taskId: null,
+                        startTime: null,
+                        endTime: null,
+                        leaveType: null,
+                        reason: null,
+                        userId: null,
+                        hr: null,
+                        deptleaderapprove: null,
+                        hrapprove: null,
+                        id: null,
+                };
                 this.resetForm("form");
             },
             /** 搜索按钮操作 */
@@ -244,9 +345,19 @@
                     this.form.leaveType = response.leaveApply.leaveType;
                     this.form.reason = response.leaveApply.reason;
                     this.form.userId = response.leaveApply.userId;
-                    this.open = true;
                     this.title = "审批请假";
                 });
+                // this.form.id = row.businessKey;
+                listUser().then(response => {
+                    this.userList = response.rows;
+                });
+                if(row.taskName == "部门领导审批") {
+                    this.open = true;
+                } else if(row.taskName == "人事审批") {
+                    this.openHr = true;
+                } else if(row.taskName == "销假") {
+                    this.openEnd = true;
+                }
             },
             /** 提交按钮 */
            submitForm() {
@@ -266,6 +377,24 @@
                             });
                         }
                     }
+                });
+            },
+            submitForm2() {
+                console.log(this.form)
+                disTask(this.form).then(response => {
+                    this.$modal.msgSuccess("新增成功");
+                    this.open = false;
+                    this.openHr = false;
+                    this.getList();
+                });
+            },
+            submitApply() {
+                console.log("111")
+                console.log(this.form)
+                updateApply(this.form).then(response => {
+                    this.$modal.msgSuccess("修改成功");
+                    this.openEnd = false;
+                    this.getList();
                 });
             },
             /** 删除按钮操作 */

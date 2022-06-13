@@ -6,7 +6,9 @@ import com.javapub.liawan.common.core.domain.entity.SysUser;
 import com.javapub.liawan.common.core.domain.model.LoginUser;
 import com.javapub.liawan.common.core.page.TableDataInfo;
 import com.javapub.liawan.common.utils.StringUtils;
+import com.javapub.liawan.common.utils.bean.MyBeanUtils;
 import com.javapub.liawan.system.domain.TaskInfo;
+import com.javapub.liawan.system.domain.vo.leaveapply.DeptLeaderApproveVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.flowable.engine.FormService;
@@ -162,11 +164,12 @@ public class TaskController extends BaseController {
     @ApiOperation("办理一个用户任务")
     @RequestMapping(value = "/completeTask/{taskId}", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxResult completeTask(@PathVariable("taskId") String taskId, @RequestParam(required = false) Map<String, Object> variables) {
+    public AjaxResult completeTask(@PathVariable("taskId") String taskId, @RequestBody DeptLeaderApproveVo deptLeaderApproveVo) {
         LoginUser loginUser = getLoginUser();
         SysUser user = loginUser.getUser();
         String username = user.getUserName();
         taskService.setAssignee(taskId, username);
+        Map<String, Object> variables = MyBeanUtils.objectToMap(deptLeaderApproveVo);
         if (variables == null) {
             taskService.complete(taskId);
         } else {
@@ -174,4 +177,17 @@ public class TaskController extends BaseController {
         }
         return AjaxResult.success();
     }
+//    public AjaxResult completeTask(@PathVariable("taskId") String taskId, @RequestParam(required = false) Map<String, Object> variables) {
+//        LoginUser loginUser = getLoginUser();
+//        SysUser user = loginUser.getUser();
+//        String username = user.getUserName();
+//        taskService.setAssignee(taskId, username);
+//        if (variables == null) {
+//            taskService.complete(taskId);
+//        } else {
+//            taskService.complete(taskId, variables);
+//        }
+//        return AjaxResult.success();
+//    }
+
 }

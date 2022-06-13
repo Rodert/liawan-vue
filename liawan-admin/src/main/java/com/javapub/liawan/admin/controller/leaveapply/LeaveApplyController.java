@@ -1,36 +1,28 @@
 package com.javapub.liawan.admin.controller.leaveapply;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import javax.servlet.http.HttpServletResponse;
-
+import com.javapub.liawan.common.annotation.Log;
+import com.javapub.liawan.common.core.controller.BaseController;
+import com.javapub.liawan.common.core.domain.AjaxResult;
 import com.javapub.liawan.common.core.domain.entity.SysUser;
+import com.javapub.liawan.common.core.page.TableDataInfo;
+import com.javapub.liawan.common.enums.BusinessType;
+import com.javapub.liawan.common.utils.poi.ExcelUtil;
+import com.javapub.liawan.system.domain.LeaveApply;
 import com.javapub.liawan.system.domain.vo.LeaveApplyDepartmentInfoVo;
+import com.javapub.liawan.system.service.ILeaveApplyService;
 import com.javapub.liawan.system.service.ISysUserService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.javapub.liawan.common.annotation.Log;
-import com.javapub.liawan.common.core.controller.BaseController;
-import com.javapub.liawan.common.core.domain.AjaxResult;
-import com.javapub.liawan.common.enums.BusinessType;
-import com.javapub.liawan.system.domain.LeaveApply;
-import com.javapub.liawan.system.service.ILeaveApplyService;
-import com.javapub.liawan.common.utils.poi.ExcelUtil;
-import com.javapub.liawan.common.core.page.TableDataInfo;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 请假Controller
@@ -85,9 +77,18 @@ public class LeaveApplyController extends BaseController {
     public AjaxResult getInfo(@PathVariable("id") Long id) {
         return AjaxResult.success(leaveApplyService.selectLeaveApplyById(id));
     }
+//
+//    /**
+//     * 新增请假
+//     */
+//    @GetMapping("/add")
+//    public List<SysUser> add() {
+////        SysUser user = SecurityUtils.getLoginUser().getUser();
+//        return userService.selectUserList(new SysUser());
+//    }
 
     /**
-     * 新增请假
+     * 发起请假
      */
     @PreAuthorize("@ss.hasPermi('system:apply:add')")
     @Log(title = "请假", businessType = BusinessType.INSERT)

@@ -30,7 +30,14 @@ export function getApplyByDeptleadercheck(taskid) {
       method: 'get'
   })
 }
-
+//办理任务
+export function disTask(data) {
+  return request({
+      url: '/task/manage/completeTask/' + data.taskId,
+      method: 'post',
+      data: data,
+  })
+}
 
 // 新增请假
 export function addApply(data) {

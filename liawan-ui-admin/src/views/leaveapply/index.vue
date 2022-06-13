@@ -9,7 +9,7 @@
                                     @keyup.enter.native="handleQuery"
                             />
                         </el-form-item>
-                        <el-form-item label="起始时间" prop="startTime">
+                        <el-form-item label="起始时间" prop="startTime" >
                             <el-date-picker clearable
                                             v-model="queryParams.startTime"
                                             type="date"
@@ -179,11 +179,11 @@
                                         <el-option v-for="item in leaveTypeList" :key="item" :label="item" :value="item"></el-option>
                                     </el-select>
                                 </el-form-item>
-                                <el-form-item label="起始时间" prop="startTime">
+                                <el-form-item label="起始时间" prop="startTime" type="daterange">
                                     <el-date-picker clearable
                                                     v-model="form.startTime"
                                                     type="date"
-                                                    value-format="yyyy-MM-dd"
+                                                    value-format="yyyy-MM-dd HH:mm:ss"
                                                     placeholder="请选择起始时间">
                                     </el-date-picker>
                                 </el-form-item>
@@ -191,12 +191,17 @@
                                     <el-date-picker clearable
                                                     v-model="form.endTime"
                                                     type="date"
-                                                    value-format="yyyy-MM-dd"
+                                                    value-format="yyyy-MM-dd HH:mm:ss"
                                                     placeholder="请选择结束时间">
                                     </el-date-picker>
                                 </el-form-item>
                                 <el-form-item label="原因" prop="reason">
                                     <el-input v-model="form.reason" placeholder="请输入原因" />
+                                </el-form-item>
+                                <el-form-item label="部门领导：" prop="deptleader">
+                                    <el-select v-model="form.deptleader" placeholder="请输入部门领导">
+                                        <el-option v-for="item in userList" :key="item.userName" :label="item.userName" :value="item.userName"/>
+                                    </el-select>
                                 </el-form-item>
                                 <!-- <el-form-item label="申请时间" prop="applyTime">
                                     <el-date-picker clearable
@@ -232,8 +237,9 @@
 </template>
 
 <script>
-    import { getUserProfile } from "@/api/system/user";
+    import { getUserProfile, listUser } from "@/api/system/user";
     import { listApply, getApply, delApply, addApply, updateApply } from "@/api/leaveapply/apply";
+
 
     export default {
         name: "Apply",
@@ -269,6 +275,8 @@
                     applyTime: null,
                     realityStartTime: null,
                     realityEndTime: null,
+                    //部门领导
+                    deptleader: null,
                 },
                 // 表单参数
                 form: {},
@@ -287,6 +295,8 @@
                 roleGroup: {},
                 postGroup: {},
                 userId: '',
+                //全部用户数据
+                userList: null,
             };
         },
         created() {
@@ -322,8 +332,10 @@
                         createBy: null,
                         createTime: null,
                         updateBy: null,
-                        updateTime: null
-            };
+                        updateTime: null,
+                        //部门领导
+                        deptleader: null,
+                };
                 this.resetForm("form");
             },
             /** 搜索按钮操作 */
@@ -347,10 +359,15 @@
                 this.reset();
                 this.open = true;
                 this.title = "添加请假";
+                this.loading = true;
                 //获取用户信息
                 getUserProfile().then(response => {
                     this.form.userId = response.data.userName;
                 });
+                listUser().then(response => {
+                    this.userList = response.rows;
+                });
+                this.loading = false;
             },
             /** 修改按钮操作 */
             handleUpdate(row) {
