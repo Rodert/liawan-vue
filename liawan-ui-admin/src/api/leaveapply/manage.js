@@ -8,9 +8,9 @@ export function listApply(query) {
         params: query
     })
 }
-export function alllist(query) {
+export function listProcess(query) {
   return request({
-      url: '/task/manage/alllist',
+      url: '/flow/manage/getprocesslists',
       method: 'post',
       params: query
   })

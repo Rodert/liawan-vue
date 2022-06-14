@@ -15,7 +15,7 @@ import java.util.List;
  * @Description:
  */
 
-public class LeaveApplyDepartmentInfoVo {
+public class LeaveApplyInfoVo {
 
     private LeaveApply leaveApply;
     private String startTime;
@@ -23,10 +23,10 @@ public class LeaveApplyDepartmentInfoVo {
     private String taskId;
     private List<SysUser> sysUsers;
 
-    public LeaveApplyDepartmentInfoVo() {
+    public LeaveApplyInfoVo() {
     }
 
-    public LeaveApplyDepartmentInfoVo(LeaveApply leaveApply, String startTime, String endTime, String taskId, List<SysUser> sysUsers) {
+    public LeaveApplyInfoVo(LeaveApply leaveApply, String startTime, String endTime, String taskId, List<SysUser> sysUsers) {
         this.leaveApply = leaveApply;
         this.startTime = startTime;
         this.endTime = endTime;

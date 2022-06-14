@@ -273,20 +273,15 @@ VALUES ('119', '全部待办', '5', '0', 'alltask', 'leaveapply/task', '', 1, 0,
         'admin', sysdate(),
         '', null,
         '全部待办菜单');
-# INSERT INTO `sys_menu`
-# VALUES ('120', '流程实例', '5', '0', '', 'leaveapply/index', '', 1, 0, 'C', '0', '0', 'system:apply:list', 'checkbox',
-#         'admin', sysdate(),
-#         '', null,
-#         '流程实例菜单');
-# INSERT INTO `sys_menu`
-# VALUES ('121', '运行历史', '5', '0', '', '', '', 1, 0, 'C', '0', '0', 'system:apply:list', 'checkbox', 'admin', sysdate(),
-#         '', null,
-#         '运行历史菜单');
-# INSERT INTO `sys_menu`
-# VALUES ('122', '流程部署', '5', '0', '', 'leaveapply/index', '', 1, 0, 'C', '0', '0', 'system:apply:list', 'checkbox',
-#         'admin', sysdate(),
-#         '', null,
-#         '流程部署菜单');
+insert into sys_menu
+values ('120', '流程监控', '5', '0', 'flowmonit', '', '', 1, 0, 'M', '0', '0', '', 'checkbox', 'admin', sysdate(), '',
+        null,
+        '流程监控菜单');
+insert into sys_menu
+values ('121', '部署管理', '5', '0', 'flowmanage', 'leaveapply/manage', '', 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', sysdate(), '',
+        null,
+        '部署管理菜单');
+
 
 -- 三级菜单
 insert into sys_menu
@@ -295,6 +290,12 @@ values ('500', '操作日志', '108', '1', 'operlog', 'monitor/operlog/index', '
 insert into sys_menu
 values ('501', '登录日志', '108', '2', 'logininfor', 'monitor/logininfor/index', '', 1, 0, 'C', '0', '0',
         'monitor:logininfor:list', 'logininfor', 'admin', sysdate(), '', null, '登录日志菜单');
+insert into sys_menu
+values ('502', '流程实例', '120', '2', 'instance', 'leaveapply/monitor/instance', '', 1, 0, 'C', '0', '0',
+        '', '', 'admin', sysdate(), '', null, '流程实例菜单');
+insert into sys_menu
+values ('503', '运行历史', '120', '2', 'history', 'leaveapply/monitor/history', '', 1, 0, 'C', '0', '0',
+        '', '', 'admin', sysdate(), '', null, '运行历史菜单');
 
 -- 用户管理按钮
 insert into sys_menu

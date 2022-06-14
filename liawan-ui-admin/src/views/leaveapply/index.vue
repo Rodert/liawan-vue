@@ -242,7 +242,7 @@
 
 
     export default {
-        name: "Apply",
+        name: "LeaveApply",
         data() {
             return {
                 // 遮罩层

@@ -8,11 +8,30 @@ export function listApply(query) {
         params: query
     })
 }
-export function alllist(query) {
+
+export function listProcess(query) {
+    return request({
+        url: '/flow/monitor/listProcess',
+        method: 'post',
+        params: query
+    })
+}
+//跳转
+export function redirection(processInstanceId) {
+  this.$router.push("/flow/monitor/traceProcess/" + processInstanceId)
+}
+//挂起
+export function hangupProcess(processInstanceId) {
+    return request({
+        url: '/flow/monitor/suspend/' + processInstanceId,
+        method: 'get',
+    })
+}
+//唤醒
+export function rouseProcess(processInstanceId) {
   return request({
-      url: '/task/manage/alllist',
-      method: 'post',
-      params: query
+      url: '/flow/monitor/run/' + processInstanceId,
+      method: 'get',
   })
 }
 
@@ -22,21 +41,6 @@ export function getApply(id) {
         url: '/system/apply/' + id,
         method: 'get'
     })
-}
-//查询任务详细信息
-export function getApplyByTaskId(taskid) {
-  return request({
-      url: '/system/apply/getLeavepplyInfo/' + taskid,
-      method: 'get'
-  })
-}
-//办理任务
-export function examineTask(data) {
-  return request({
-      url: '/task/manage/completeTask/' + data.taskId,
-      method: 'post',
-      data: data,
-  })
 }
 
 // 新增请假

@@ -162,8 +162,11 @@
         </el-dialog>
 
         <!-- 销假对话框 -->
-        <el-dialog :title="title" :visible.sync="openEnd" width="500px" append-to-body>
+        <el-dialog v-loading="loading" :title="title" :visible.sync="openEnd" width="500px" append-to-body>
             <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+                                <el-form-item label="id：" prop="id">
+                                    <el-input v-model="form.id" placeholder="id" :disabled="true"/>
+                                </el-form-item>
                                 <el-form-item label="任务id：" prop="taskId">
                                     <el-input v-model="form.taskId" placeholder="任务id" :disabled="true"/>
                                 </el-form-item>
@@ -219,11 +222,11 @@
 </template>
 
 <script>
-    import { getUserProfile, listUser } from "@/api/system/user";
-    import { listApply, alllist, getApply, delApply, addApply, updateApply, getApplyByDeptleadercheck, disTask } from "@/api/leaveapply/task";
+    import { listUser } from "@/api/system/user";
+    import { listApply, alllist, delApply, addApply, updateApply, getApplyByTaskId, examineTask } from "@/api/leaveapply/task";
 
     export default {
-        name: "Task",
+        name: "LeaveApplyTask",
         data() {
             return {
                 // 遮罩层
@@ -338,16 +341,19 @@
             //     });
             // },
             handleUpdateByTask(row) {
+                this.loading = true;
                 this.reset();
-                const taskId = row.taskId || this.taskIds
-                getApplyByDeptleadercheck(taskId).then(response => {
+                this.form = row;
+                const taskId = row.taskId || this.taskIds;
+                getApplyByTaskId(taskId).then(response => {
+                    console.log(response)
                     this.form = response;
                     this.form.leaveType = response.leaveApply.leaveType;
                     this.form.reason = response.leaveApply.reason;
                     this.form.userId = response.leaveApply.userId;
+                    this.form.id = response.leaveApply.id;
                     this.title = "审批请假";
                 });
-                // this.form.id = row.businessKey;
                 listUser().then(response => {
                     this.userList = response.rows;
                 });
@@ -358,6 +364,8 @@
                 } else if(row.taskName == "销假") {
                     this.openEnd = true;
                 }
+                console.log(this.form)
+                this.loading = false;
             },
             /** 提交按钮 */
            submitForm() {
@@ -380,22 +388,22 @@
                 });
             },
             submitForm2() {
-                console.log(this.form)
-                disTask(this.form).then(response => {
-                    this.$modal.msgSuccess("新增成功");
+                examineTask(this.form).then(response => {
+                    this.$modal.msgSuccess("审批成功");
                     this.open = false;
                     this.openHr = false;
                     this.getList();
                 });
             },
             submitApply() {
-                console.log("111")
-                console.log(this.form)
                 updateApply(this.form).then(response => {
                     this.$modal.msgSuccess("修改成功");
-                    this.openEnd = false;
+                });
+                examineTask(this.form).then(response => {
+                    this.$modal.msgSuccess("审批成功");
                     this.getList();
                 });
+                this.openEnd = false;
             },
             /** 删除按钮操作 */
             handleDelete(row) {

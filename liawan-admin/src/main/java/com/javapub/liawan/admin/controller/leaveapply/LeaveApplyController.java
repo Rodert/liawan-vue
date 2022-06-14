@@ -8,7 +8,7 @@ import com.javapub.liawan.common.core.page.TableDataInfo;
 import com.javapub.liawan.common.enums.BusinessType;
 import com.javapub.liawan.common.utils.poi.ExcelUtil;
 import com.javapub.liawan.system.domain.LeaveApply;
-import com.javapub.liawan.system.domain.vo.LeaveApplyDepartmentInfoVo;
+import com.javapub.liawan.system.domain.vo.LeaveApplyInfoVo;
 import com.javapub.liawan.system.service.ILeaveApplyService;
 import com.javapub.liawan.system.service.ISysUserService;
 import org.flowable.engine.RuntimeService;
@@ -119,71 +119,30 @@ public class LeaveApplyController extends BaseController {
     }
 
     /**
-     * 部门领导审批
+     * 通过taskId获取任务信息
      *
      * @return
      */
-    @GetMapping("/deptleadercheck/{taskId}")
-    public LeaveApplyDepartmentInfoVo deptleadercheck(@PathVariable String taskId) {
+    @GetMapping("/getLeavepplyInfo/{taskId}")
+    public LeaveApplyInfoVo deptleadercheck(@PathVariable String taskId) {
         Task t = taskService.createTaskQuery().taskId(taskId).singleResult();
         String processId = t.getProcessInstanceId();
         ProcessInstance p = runtimeService.createProcessInstanceQuery().processInstanceId(processId).singleResult();
         if (p != null) {
             LeaveApply leaveApply = leaveApplyService.selectLeaveApplyById(Long.parseLong(p.getBusinessKey()));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            LeaveApplyDepartmentInfoVo leaveApplyDepartmentInfoVo = new LeaveApplyDepartmentInfoVo(
+            LeaveApplyInfoVo leaveApplyInfoVo = new LeaveApplyInfoVo(
                     leaveApply,
                     sdf.format(leaveApply.getStartTime()),
                     sdf.format(leaveApply.getEndTime()),
                     taskId,
                     userService.selectUserList(new SysUser()));
-            return leaveApplyDepartmentInfoVo;
+            return leaveApplyInfoVo;
         }
-        return new LeaveApplyDepartmentInfoVo();
+        return new LeaveApplyInfoVo();
     }
 
 }
 
-/**
- * 人事审批
- *
- * @return
- */
-//    @GetMapping("/hrcheck")
-//    public String hrcheck(String taskid, ModelMap mmap) {
-//        Task t = taskService.createTaskQuery().taskId(taskid).singleResult();
-//        String processId = t.getProcessInstanceId();
-//        ProcessInstance p = runtimeService.createProcessInstanceQuery().processInstanceId(processId).singleResult();
-//        if (p != null) {
-//            LeaveApply apply = leaveApplyService.selectLeaveApplyById(Long.parseLong(p.getBusinessKey()));
-//            mmap.put("apply", apply);
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            mmap.put("startTime", sdf.format(apply.getStartTime()));
-//            mmap.put("endTime", sdf.format(apply.getEndTime()));
-//            mmap.put("taskid", taskid);
-//        }
-//        return prefix + "/hrcheck";
-//    }
-//
-//    /**
-//     * 销假
-//     *
-//     * @return
-//     */
-//    @GetMapping("/destroyapply")
-//    public String destroyapply(String taskid, ModelMap mmap) {
-//        Task t = taskService.createTaskQuery().taskId(taskid).singleResult();
-//        String processId = t.getProcessInstanceId();
-//        ProcessInstance p = runtimeService.createProcessInstanceQuery().processInstanceId(processId).singleResult();
-//        if (p != null) {
-//            LeaveApply apply = leaveApplyService.selectLeaveApplyById(Long.parseLong(p.getBusinessKey()));
-//            mmap.put("apply", apply);
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            mmap.put("startTime", sdf.format(apply.getStartTime()));
-//            mmap.put("endTime", sdf.format(apply.getEndTime()));
-//            mmap.put("taskid", taskid);
-//        }
-//        return prefix + "/destroyapply";
-//    }
 
 
