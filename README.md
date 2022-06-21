@@ -1,3 +1,4 @@
+> 强以来只有mysql，安装非常简单、新手5分钟即可安装部署
 > 本项目免费开源完整可查阅文档，由公众号 JavaPub 维护更新、可以协助适配不同操作系统及存储平台。
 
 # liawan-vue
@@ -6,7 +7,7 @@
 
 ![logl](doc/logo.png)
 
-[GitHub](https://github.com/Rodert/liawan-vue/tree/main/liawan-ui-admin) | [Gitee](https://gitee.com/rodert/liawan-vue)
+[GitHub](https://github.com/Rodert/liawan-vue) | [Gitee](https://gitee.com/rodert/liawan-vue)
 
 ## 俩万
 
