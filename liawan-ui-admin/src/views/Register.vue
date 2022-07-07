@@ -151,7 +151,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("https://tva3.sinaimg.cn/large/007F3CC8ly1h2ad5zfsjrg30hr08qx6p.gif");
+  background-image: url("https://tvax1.sinaimg.cn/large/007F3CC8ly1h3yjx6zk65g309u05ktj2.gif");
   background-size: cover;
 }
 .title {
