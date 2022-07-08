@@ -62,6 +62,7 @@
     <!--  底部  -->
     <div class="el-register-footer">
       <span>Copyright © 2022 javapub.net.cn All Rights Reserved.</span>
+      <a href="https://beian.miit.gov.cn/">京ICP备2021007111号-2</a>
     </div>
   </div>
 </template>
