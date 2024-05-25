@@ -135,23 +135,24 @@ password：123456
 
 登录页
 
-![image](https://tvax4.sinaimg.cn/large/007F3CC8ly1h28xwkwhuaj31hc0q1e81.jpg)
+![image](img/image.png)
 
 首页
 
-![image](https://tva1.sinaimg.cn/large/007F3CC8ly1h28xxe8uc0j31hc0q1doh.jpg)
+![image](img/2.png)
 
 系统管理
 
-![image](https://tva1.sinaimg.cn/large/007F3CC8ly1h28y27oxu9j31hc0ohtgk.jpg)
+![image](img/3.png)
 
 数据监控
 
-![image](https://tva4.sinaimg.cn/large/007F3CC8ly1h28y37bvi3j31hc0q1an4.jpg)
+![image](img/4.png)
 
 服务监控
 
-![image](https://tva2.sinaimg.cn/large/007F3CC8ly1h28y45neauj31hc0q1qe5.jpg)
+![image](img/5.png)
+
 
 
 ## 打包部署
