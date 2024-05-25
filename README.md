@@ -139,19 +139,19 @@ password：123456
 
 首页
 
-![image](img/2.png)
+![image](img/2.jpg)
 
 系统管理
 
-![image](img/3.png)
+![image](img/3.jpg)
 
 数据监控
 
-![image](img/4.png)
+![image](img/4.jpg)
 
 服务监控
 
-![image](img/5.png)
+![image](img/5.jpg)
 
 
 
